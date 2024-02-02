@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                android:layout_height="match_parent" android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@color/totalTrans">
+
+    <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteY="6dp" tools:layout_editor_absoluteX="286dp" android:id="@+id/exit"
+            android:background="@drawable/close" android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true" android:contentDescription="@string/todo"
+            android:layout_marginLeft="8dp" android:layout_marginEnd="8dp"/>
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" app:cardCornerRadius="15dp" android:layout_below="@+id/exit"
+            android:layout_marginRight="8dp" android:layout_marginLeft="8dp" android:layout_marginTop="9dp"
+            android:layout_marginStart="8dp" android:layout_marginEnd="8dp" android:layout_marginBottom="8dp">
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/showItem"
+                    android:layout_centerHorizontal="true" android:layout_marginTop="8dp"
+                    android:layout_alignParentTop="true">
+
+                <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/animationView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dialogAnim"
+                        android:layout_gravity="center"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:lottie_fileName="starSuccess.json"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginEnd="40dp"
+                        app:lottie_autoPlay="true" android:layout_centerHorizontal="true"/>
+                <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/animationView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dialogAnim"
+                        android:layout_gravity="center"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:lottie_fileName="star.json"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginEnd="40dp"
+                        app:lottie_autoPlay="true" android:visibility="gone"
+                />
+                <ImageView
+                        android:layout_width="@dimen/dialogAnim"
+                        android:layout_height="@dimen/dialogAnim" android:id="@+id/ratedImg"
+                        android:layout_centerHorizontal="true" android:contentDescription="@string/todo"
+                        android:scaleType="fitXY"/>
+            </RelativeLayout>
+            <TextView
+                    android:text="@string/howEx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/rateEx"
+                    android:fontFamily="@font/monadi" android:layout_centerHorizontal="true"
+                    android:textSize="24sp"
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                    android:layout_marginRight="8dp" android:layout_marginLeft="8dp" android:layout_marginTop="15dp"
+                    android:layout_below="@+id/showItem"/>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:layout_below="@+id/rateEx"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true" android:layout_marginTop="30dp"
+                    android:layout_marginBottom="30dp" android:layout_marginLeft="4dp" android:layout_marginRight="4dp">
+                <ImageButton
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/face10" android:background="@drawable/face10"
+                        android:contentDescription="@string/todo" android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"/>
+                <ImageButton
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/face11" android:background="@drawable/face11"
+                        android:contentDescription="@string/todo" android:visibility="gone"
+                        android:layout_marginLeft="8dp" android:layout_marginRight="8dp"/>
+                <ImageButton
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/face20" android:background="@drawable/face20"
+                        android:contentDescription="@string/todo" android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"/>
+                <ImageButton
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/face21" android:background="@drawable/face21"
+                        android:contentDescription="@string/todo" android:visibility="gone"
+                        android:layout_marginLeft="8dp" android:layout_marginRight="8dp"/>
+                <ImageButton
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/face30" android:background="@drawable/face30"
+                        android:contentDescription="@string/todo" android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"/>
+                <ImageButton
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/face31" android:background="@drawable/face31"
+                        android:contentDescription="@string/todo" android:visibility="gone"
+                        android:layout_marginLeft="8dp" android:layout_marginRight="8dp"/>
+                <ImageButton
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/face40" android:background="@drawable/face40"
+                        android:contentDescription="@string/todo" android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"/>
+                <ImageButton
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/face41" android:background="@drawable/face41"
+                        android:contentDescription="@string/todo" android:visibility="gone"
+                        android:layout_marginLeft="8dp" android:layout_marginRight="8dp"/>
+                <ImageButton
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/face50" android:background="@drawable/face50"
+                        android:contentDescription="@string/todo" android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"/>
+                <ImageButton
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/face51" android:background="@drawable/face51"
+                        android:contentDescription="@string/todo" android:visibility="gone"
+                        android:layout_marginLeft="8dp" android:layout_marginRight="8dp"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

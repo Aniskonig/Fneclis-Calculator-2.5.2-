@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#03a9f4</color>
+    <color name="colorPrimaryDark">#057eff</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="White">#ffffff</color>
+    <color name="StatusBarcolor">#ED1A1A</color>
+    <color name="Maincolor">#f1eee3</color>
+    <color name="Barcolor">#FF2D00</color>
+    <color name="Effectcolor">#cab8a6</color>
+    <color name="Nicecolor">#DFCEB6</color>
+
+    <color name="help_dg_bg">#252a34</color>
+
+    <color name="RecyclerViewbg">#ff3f3f</color>
+
+    <color name="B_ORANGE">#ff5c39</color>
+
+    <color name="headColor">#26ff4c4c</color>
+    <color name="navBAR">#c23232</color>
+    <color name="fortRed">#FFCD0505</color>
+    <color name="transBLACK">#73000000</color>
+    <color name="transWhite">#B31C9CD6</color>
+
+    <color name="blueCARD">#1685B7</color>
+
+    <color name="blueDARK">#001F2F</color>
+
+
+    <color name="blueONE">#1d7ca7</color>
+    <color name="blueTWO">#2d8db8</color>
+    <color name="blueTHREE">#1c9cd6</color>
+    <color name="blueFOOR">#006ABE</color>
+    <color name="blueFIVE">#53b4df</color>
+
+
+    <color name="blueNICE">#128ed2</color>
+    <color name="totalTrans">#00001f2f</color>
+
+    <color name="blueSY2">#4977ad</color>
+    <color name="blueSY3">#4D9CD0</color>
+    <color name="movSY0">#5f5395</color>
+
+    <color name="qt1">#8f0237</color>
+    <color name="qt11">#0073ff</color>
+    <color name="qt2">#a7184e</color>
+    <color name="qt3">#a6174d</color>
+    <color name="qt4">#1988ff</color>
+
+    <color name="white65">#8CFFFFFF</color>
+
+    <color name="blv1">#29B6F6</color>
+    <color name="blv2">#039BE5</color>
+    <color name="blv3">#0277BD</color>
+    <color name="blv4">#01579B</color>
+    <color name="blv5">#003b6a</color>
+
+    <color name="goodBl">#00a4e4</color>
+
+    <color name="BlueA700">#2962FF</color>
+
+    <color name="LightBlue500">#03A9F4</color>
+    <color name="LightBlue400">#29B6F6</color>
+    <color name="LightBlue300">#4FC3F7</color>
+    <color name="LightBlue200">#81D4FA</color>
+
+    <color name="Nicebg">#d7ba9b</color>
+    <color name="Hardbg">#9c8264</color>
+
+    <color name="NiceRED">#ff1932</color>
+    <color name="NicePINK">#e04f5f</color>
+    <color name="NiceBlue">#186290</color>
+
+    <color name="ABlue">#3ec1d3</color>
+    <color name="CBlue">#005792</color>
+
+
+        <color name="onesignal_bgimage_notif_title_color">#001F2F</color>
+        <color name="onesignal_bgimage_notif_body_color">#186290</color>
+
+
+
+<color name="black">#FF000000</color>
+<color name="white">#FFFFFFFF</color>
+<color name="bg_color">#f2f3f5</color>
+
+<color name="pink_0">#c1006d</color>
+<color name="blue">#46C7FF</color>
+<color name="gray">#EBECF0</color>
+<color name="icon_gray">#BFC1C3</color>
+<color name="dark_green">#28a745</color>
+<color name="green">#87E9A9</color>
+<color name="orange">#FAB972</color>
+<color name="red">#FB003F</color>
+<color name="trans">#00000000</color>
+<color name="light_green_400">#9CCC65</color>
+<color name="blue_400">#42A5F5</color>
+<color name="orange_500">#FF9800</color>
+
+<color name="material_grey_500">#9E9E9E</color>
+
+<color name="grey_3">#f7f7f7</color>
+<color name="grey_5">#f2f2f2</color>
+<color name="grey_10">#e6e6e6</color>
+<color name="grey_20">#cccccc</color>
+<color name="grey_40">#999999</color>
+<color name="grey_60">#666666</color>
+<color name="grey_80">#37474F</color>
+<color name="grey_90">#263238</color>
+<color name="grey_95">#1a1a1a</color>
+<color name="grey_100_">#0d0d0d</color>
+<color name="lightWhite">#FFFAFA</color>
+</resources>

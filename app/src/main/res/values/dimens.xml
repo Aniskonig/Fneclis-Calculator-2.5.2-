@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fontViewsize">18sp</dimen>
+    <dimen name="errorTxtSize">22sp</dimen>
+    <dimen name="resultTXT">36sp</dimen>
+    <dimen name="cal_btn_HW">50dp</dimen>
+    <dimen name="res_LL_Height">80dp</dimen>
+    <dimen name="menu_btn_HW">70dp</dimen>
+    <dimen name="specialityNameCALpageTXTsize">18sp</dimen>
+    <dimen name="menu_BTN_BottomMargin">20dp</dimen>
+    <dimen name="ll_Image_Height">75dp</dimen>
+    <dimen name="ll_Image_Allpadding">8dp</dimen>
+    <dimen name="imageView_AllMargin">12dp</dimen>
+    <dimen name="licenseButton_TxtSize">24sp</dimen>
+    <dimen name="LM_Button_Mar_LR">50dp</dimen>
+    <dimen name="LM_Button_Mar_TOP">30dp</dimen>
+    <dimen name="LM_Button_Padding_All">8dp</dimen>
+    <dimen name="sem_Margin_LR">50dp</dimen>
+    <dimen name="sem_Margin_TOP">30dp</dimen>
+    <dimen name="sem_Padding_TB">8dp</dimen>
+    <dimen name="sem_Padding_LR">70dp</dimen>
+    <dimen name="semTXTsize">24sp</dimen>
+    <dimen name="secondLicense_Padding_LR">80dp</dimen>
+    <dimen name="radius">70dp</dimen>
+    <dimen name="sizeHeight">30dp</dimen>
+    <dimen name="RL_CV_BOTOM_Marg">20dp</dimen>
+
+
+    <dimen name="Rel_Height">60dp</dimen>
+    <dimen name="ReL_All_Padding">8dp</dimen>
+    <dimen name="Home_btn_HW">50dp</dimen>
+    <dimen name="txtViewSize">18sp</dimen>
+    <dimen name="textView_all_padding">10dp</dimen>
+    <dimen name="Fneclis_Mag_LR">60dp</dimen>
+    <dimen name="close_btn_RT">9dp</dimen>
+    <dimen name="close_btn_HW">25dp</dimen>
+    <dimen name="modNAME_W">170dp</dimen>
+    <dimen name="CoursTxt_size">8sp</dimen>
+    <dimen name="ModName_TXT">18sp</dimen>
+    <dimen name="CarVie_H">150dp</dimen>
+    <dimen name="specialityName_H">75dp</dimen>
+    <dimen name="txtCOURS_Size">12sp</dimen>
+    <dimen name="txtTD_TP_size">14sp</dimen>
+    <dimen name="madeWith_B">40dp</dimen>
+    <dimen name="madeWith_An">18sp</dimen>
+    <dimen name="madeWith_AR">22sp</dimen>
+    <dimen name="dialogAnim">150dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+</resources>

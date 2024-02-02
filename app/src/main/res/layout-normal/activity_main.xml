@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mainRelativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_color"
+        android:orientation="vertical"
+        tools:context=".pages.MainActivity">
+
+    <androidx.core.widget.NestedScrollView
+            android:id="@+id/Ncv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/ll_Image"
+            android:fillViewport="true">
+
+        <RelativeLayout
+                android:id="@+id/RL_CV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <Button
+                    android:id="@+id/licenseButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/LM_Button_Mar_LR"
+                    android:layout_marginRight="@dimen/LM_Button_Mar_LR"
+                    android:background="@drawable/roundedbutton"
+                    android:padding="@dimen/LM_Button_Padding_All"
+                    android:text="@string/Licence"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/licenseButton_TxtSize"
+                    tools:cardCornerRadius="4dp" />
+
+            <Button
+                    android:id="@+id/masterButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/licenseYearsLinearLayout"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="@dimen/LM_Button_Mar_LR"
+                    android:layout_marginTop="@dimen/LM_Button_Mar_TOP"
+                    android:layout_marginRight="@dimen/LM_Button_Mar_LR"
+                    android:background="@drawable/roundedbutton"
+                    android:gravity="center_vertical|center_horizontal|center"
+                    android:padding="@dimen/LM_Button_Padding_All"
+                    android:text="@string/master"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/licenseButton_TxtSize"
+                    tools:cardCornerRadius="4dp" />
+
+            <RelativeLayout
+                    android:id="@+id/licenseYearsLinearLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/licenseButton">
+
+                <LinearLayout
+                        android:id="@+id/licenseYearsLinearLayout2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="@dimen/LM_Button_Mar_LR"
+                        android:layout_marginRight="@dimen/LM_Button_Mar_LR"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        tools:ignore="UselessParent">
+
+                    <Button
+                            android:id="@+id/firstLicense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/LightBlue500"
+                            android:fontFamily="@font/vipraw"
+                            android:gravity="center"
+                            android:text="@string/firstYear"
+                            android:textColor="@color/White"
+                            android:textSize="@dimen/semTXTsize"
+                            android:textStyle="bold"
+                            android:visibility="gone"
+                            tools:cardCornerRadius="4dp" />
+
+                    <Button
+                            android:id="@+id/secondLicense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/LightBlue400"
+                            android:fontFamily="@font/vipraw"
+                            android:text="@string/secondYear"
+                            android:textColor="@color/White"
+                            android:textSize="@dimen/semTXTsize"
+                            android:textStyle="bold"
+                            android:visibility="gone"
+                            tools:cardCornerRadius="4dp" />
+
+                    <Button
+                            android:id="@+id/thirdLicense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/LightBlue300"
+                            android:fontFamily="@font/vipraw"
+                            android:text="@string/thirdYear"
+                            android:textColor="@color/White"
+                            android:textSize="@dimen/semTXTsize"
+                            android:textStyle="bold"
+                            android:visibility="gone"
+                            tools:cardCornerRadius="4dp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <Button
+                    android:id="@+id/semTWO"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/semONE"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="@dimen/sem_Margin_LR"
+                    android:layout_marginTop="@dimen/sem_Margin_TOP"
+                    android:layout_marginRight="@dimen/sem_Margin_LR"
+                    android:background="@drawable/semroundedbtn"
+                    android:fontFamily="@font/vipraw"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/sem_Padding_LR"
+                    android:paddingTop="@dimen/sem_Padding_TB"
+                    android:paddingRight="@dimen/sem_Padding_LR"
+                    android:paddingBottom="@dimen/sem_Padding_TB"
+                    android:text="@string/secondSemester"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/semTXTsize"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    tools:cardCornerRadius="4dp" />
+
+            <Button
+                    android:id="@+id/semONE"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/licenseYearsLinearLayout"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="@dimen/sem_Margin_LR"
+                    android:layout_marginTop="@dimen/sem_Margin_TOP"
+                    android:layout_marginRight="@dimen/sem_Margin_LR"
+                    android:background="@drawable/semroundedbtn"
+                    android:fontFamily="@font/vipraw"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/sem_Padding_LR"
+                    android:paddingTop="@dimen/sem_Padding_TB"
+                    android:paddingRight="@dimen/sem_Padding_LR"
+                    android:paddingBottom="@dimen/sem_Padding_TB"
+                    android:text="@string/firstSemester"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/semTXTsize"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    tools:cardCornerRadius="4dp" />
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+            android:id="@+id/ll_Image"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ll_Image_Height"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:background="@drawable/menu_shadow"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/ll_Image_Allpadding"
+            android:visibility="visible">
+
+        <TextView
+                android:id="@+id/moduleName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/vipraw"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textColor="@color/colorPrimary"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/policy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+        <TextView
+                android:id="@+id/poliTXT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/monadi"
+                android:text="@string/policy"
+                android:paddingEnd="10dp"
+                android:textColor="#4C000000"
+                android:textSize="12sp" />
+
+
+
+        <Button
+                android:id="@+id/menu"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_alignParentStart="true"
+                android:background="@drawable/shield" />
+
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    //CalculatingPAge
+
+    <dimen name="textViewSPECIALITYsize" tools:ignore="MissingDefaultResource">8sp</dimen>
+    <dimen name="textViewSPECIALITYpadding" tools:ignore="MissingDefaultResource">2dp</dimen>
+    <dimen name="errorTxtSize">14sp</dimen>
+    <dimen name="resultTXT">18sp</dimen>
+    <dimen name="cal_btn_HW">30dp</dimen>
+    <dimen name="res_LL_Height">50dp</dimen>
+    <dimen name="menu_btn_HW">50dp</dimen>
+    <dimen name="specialityNameCALpageTXTsize">12sp</dimen>
+    <dimen name="menu_BTN_BottomMargin">5dp</dimen>
+
+    //MainPage
+    <dimen name="ll_Image_Height">35dp</dimen>
+    <dimen name="ll_Image_Allpadding">0dp</dimen>
+    <dimen name="imageView_AllMargin">6dp</dimen>
+    <dimen name="licenseButton_TxtSize">18sp</dimen>
+    <dimen name="LM_Button_Mar_LR">60dp</dimen>
+    <dimen name="LM_Button_Mar_TOP">10dp</dimen>
+    <dimen name="LM_Button_Padding_All">0dp</dimen>
+    <dimen name="sem_Margin_LR">60dp</dimen>
+    <dimen name="sem_Margin_TOP">10dp</dimen>
+    <dimen name="sem_Padding_TB">0dp</dimen>
+    <dimen name="sem_Padding_LR">10dp</dimen>
+    <dimen name="semTXTsize">18sp</dimen>
+    <dimen name="secondLicense_Padding_LR">10dp</dimen>
+    <dimen name="LM_btn_H">25dp</dimen>
+    <dimen name="radius">50dp</dimen>
+    <dimen name="sizeHeight">0dp</dimen>
+    <dimen name="RL_CV_BOTOM_Marg">20dp</dimen>
+
+
+    <dimen name="Rel_Height">50dp</dimen>
+    <dimen name="ReL_All_Padding">4dp</dimen>
+    <dimen name="Home_btn_HW">45dp</dimen>
+    <dimen name="txtViewSize">14sp</dimen>
+    <dimen name="textView_all_padding">5dp</dimen>
+
+    <dimen name="Fneclis_Mag_LR">20dp</dimen>
+    <dimen name="close_btn_RT">4dp</dimen>
+    <dimen name="close_btn_HW">20dp</dimen>
+
+    <dimen name="modNAME_W">75dp</dimen>
+    <dimen name="CoursTxt_size">8sp</dimen>
+    <dimen name="ModName_TXT">10sp</dimen>
+    <dimen name="CarVie_H">130dp</dimen>
+    <dimen name="specialityName_H">55dp</dimen>
+    <dimen name="txtCOURS_Size">12sp</dimen>
+    <dimen name="txtTD_TP_size">14sp</dimen>
+    <dimen name="madeWith_B">20dp</dimen>
+    <dimen name="madeWith_An">14sp</dimen>
+    <dimen name="madeWith_AR">18sp</dimen>
+    <dimen name="dialogAnim">110dp</dimen>
+    <dimen name="faceSize">30dp</dimen>
+
+</resources>

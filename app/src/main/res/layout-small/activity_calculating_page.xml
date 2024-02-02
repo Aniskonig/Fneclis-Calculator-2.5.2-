@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/MainRealative"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_color"
+        tools:context=".pages.CalculatingPage"
+        tools:layout_editor_absoluteY="25dp">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCalPage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/fneclisADS"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:paddingTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+            android:id="@+id/textViewSPECIALITY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/menu_shadow"
+            android:gravity="center"
+            android:padding="6dp"
+            android:text="@string/threePTS"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/specialityNameCALpageTXTsize"
+            android:textStyle="bold"
+            android:visibility="visible"
+            app:fontFamily="@font/vipraw"
+            app:layout_constrainedHeight="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+            android:id="@+id/res_LL"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/res_LL_Height"
+            android:layout_above="@id/errorLL"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/floating_result"
+            android:orientation="horizontal">
+
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:visibility="gone">
+
+            <ImageButton
+                    android:id="@+id/cal_btn"
+                    android:layout_width="@dimen/cal_btn_HW"
+                    android:layout_height="@dimen/cal_btn_HW"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:background="@drawable/calculator_new"
+                    android:contentDescription="@string/todo" />
+        </RelativeLayout>
+
+        <TextView
+                android:id="@+id/calculatingTV"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/baseline_calculate"
+                android:drawablePadding="5dp"
+                android:fontFamily="@font/monadi"
+                android:gravity="center"
+                android:paddingStart="20dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="40dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="9dp"
+                android:text="@string/calculer"
+                android:textColor="@color/white"
+                android:textSize="@dimen/resultTXT"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlSymmetry" />
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/errorLL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/errorTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginRight="0dp"
+                android:fontFamily="@font/vipraw"
+                android:gravity="center"
+                android:padding="6dp"
+                android:paddingEnd="2dp"
+                android:paddingRight="2dp"
+                android:text="@string/threePTS"
+                android:textColor="@color/White"
+                android:textSize="@dimen/errorTxtSize"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlSymmetry"
+                tools:targetApi="o" />
+    </LinearLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_margin="50dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_fileName="check-animation.json" />
+
+    <ImageButton
+            android:id="@+id/fneclisADS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewSPECIALITY"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/fneclis_mobile_banner_ads"
+            android:contentDescription="@string/todo"
+            android:visibility="gone" />
+
+    <Button
+            android:id="@+id/close_ADS"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignTop="@+id/fneclisADS"
+            android:layout_alignRight="@+id/fneclisADS"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="4dp"
+            android:background="@drawable/close"
+            android:contentDescription="@string/todo"
+            android:visibility="gone" />
+
+    <TextView
+            android:id="@+id/timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/fneclisADS"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="8dp"
+            android:contentDescription="@string/todo"
+            android:fontFamily="@font/monadi"
+            android:textSize="18sp"
+            android:visibility="gone" />
+
+<!--    <Button-->
+<!--            android:id="@+id/saveRestoreButton"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/save" />-->
+
+</RelativeLayout>

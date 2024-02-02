@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">Fneclis Calculator</string>
+    <string name="button">Button</string>
+    <string name="book_title">book_title</string>
+    <string name="todo">TODO</string>
+    <string name="noBooksFound">للأسف…لا يوجد تخصص يطابق ما تبحث عنه.</string>
+    <string name="threePTS">…</string>
+    <string name="cours">COURS</string>
+    <string name="td">TD</string>
+    <string name="tp">TP</string>
+    <string name="APPLICATION_ID">ca-app-pub-1974446900209189~8596835279</string>
+    <string name="adUnitId">ca-app-pub-1974446900209189/7819898081</string>
+    <string name="Licence">Licence</string>
+    <string name="master">Master</string>
+    <string name="firstSemester">السّداسي الأوّل</string>
+    <string name="secondSemester">السّداسي الثّاني</string>
+    <string name="firstYear">السّـنة الأولـى</string>
+    <string name="secondYear">السّـنة الثّـانية</string>
+    <string name="thirdYear">السّـنة الثّـالثة</string>
+    <string name="abri_name">abri Name</string>
+    <string name="full_name">full Name</string>
+    <string name="madeWithLove">صنع بحب في الجزائر</string>
+    <string name="made_with_love_in_algeria">Made with Love in Algeria</string>
+    <string name="howEx">كيف كانت تجربتك معنا ؟</string>
+    <string name="title_activity_ads_page">AdsPage</string>
+    <string name="action_settings">Settings</string>
+    <string name="forFree">يساعد هذا الإعلان على أن يظل التطبيق مجانيا</string>
+    <string name="title_activity_ads">AdsActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <!-- -
+        This is an ad unit ID for a banner test ad. Replace with your own banner ad unit id.
+        For more information, see https://support.google.com/admob/answer/3052638
+    <!- -->
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+
+    <string name="wi_fi">لتوفير أفضل جو للمستخدم يقوم هذا التطبيق بتفعيل الواي فاي (Wi-Fi) تلقائيا</string>
+    <string name="agree">حسنا</string>
+    <string name="noThanks">لا شكرا</string>
+    <string name="policy">سياسة الخصوصية</string>
+    <string name="privacyTXT">بما ان رضاكم عن تطبيقنا هو أعلى نقطة في هرم أهدافنا، و لأننا نسعى دائما لتقديم الأفضل فقط لأننا نتعامل مع الأفضل، كان لزاماً علينا أن نعلمك عزيز المستخدم بكل البيانات التي عليك توفيرها للتطبيق ليقدم لك أفضل أداء ممكن. لذا أدعوك عزيز المستخدم إلى أن تشرفنا بزيارتك .لموقعنا و الإطلاع على سياسة الخصوصية المتعلقة بالتطبيق.</string>
+    <string name="privacyBtnTxt">سياسة الخصوصية</string>
+    <string name="contentTxt">كما يمكنك الإطلاع على سياسة المحتوى كما هو مبين أدناه</string>
+    <string name="contentBtnTxt">سياسة المحتوى</string>
+    <string name="calculer">Calculer</string>
+    <string name="rechercher">Rechercher</string>
+    <string name="save">Save</string>
+
+
+</resources>

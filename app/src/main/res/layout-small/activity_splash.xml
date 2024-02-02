@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_color"
+        tools:context=".pages.Splash">
+
+    <ImageButton
+            android:id="@+id/close_btn"
+            android:layout_width="@dimen/close_btn_HW"
+            android:layout_height="@dimen/close_btn_HW"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/close_btn_RT"
+            android:layout_marginEnd="9dp"
+            android:layout_marginRight="@dimen/close_btn_RT"
+            android:adjustViewBounds="true"
+            android:background="@drawable/close_ic"
+            android:contentDescription="@string/todo" />
+
+    <LinearLayout
+            android:id="@+id/madeWith"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/madeWith_B"
+            android:gravity="center"
+            android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/monadi"
+                android:text="@string/madeWithLove"
+                android:textColor="@color/blueDARK"
+                android:textSize="@dimen/madeWith_AR" />
+
+        <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/vipraw"
+                android:text="@string/made_with_love_in_algeria"
+                android:textColor="@color/blueDARK"
+                android:textSize="@dimen/madeWith_An" />
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/Fneclis_Mag_LR"
+            android:layout_marginRight="60dp"
+            android:orientation="horizontal">
+
+        <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animation_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_fileName="F.json" />
+
+        <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animation_view2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toEndOf="@+id/animation_view"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_fileName="N.json" />
+
+        <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animation_view3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toEndOf="@+id/animation_view2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_fileName="E.json" />
+
+        <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animation_view4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toEndOf="@+id/animation_view3"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_fileName="C.json" />
+
+        <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animation_view5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toEndOf="@+id/animation_view3"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_fileName="L.json" />
+
+        <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animation_view6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toEndOf="@+id/animation_view3"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_fileName="I.json" />
+
+        <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animation_view7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toEndOf="@+id/animation_view3"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_fileName="S.json" />
+
+    </LinearLayout>
+
+</RelativeLayout>
