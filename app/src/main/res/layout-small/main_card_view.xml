@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/cardview_id"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/CarVie_H"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="8dp">
+
+    <RelativeLayout
+            android:id="@+id/Ridl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center|center_horizontal|center_vertical"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/modNAME"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingEnd="4dp"
+                android:paddingRight="4dp">
+
+            <LinearLayout
+                    android:id="@+id/NamesLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/all_shadow"
+                    android:baselineAligned="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/txtCOURS"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_weight="1"
+                        android:autoSizeMaxTextSize="100sp"
+                        android:autoSizeMinTextSize="10sp"
+                        android:autoSizeStepGranularity="8sp"
+                        android:autoSizeTextType="uniform"
+                        android:gravity="center"
+                        android:padding="4dp"
+                        android:text="@string/cours"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        tools:targetApi="o" />
+
+                <TextView
+                        android:id="@+id/txtTD"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_weight="1"
+                        android:autoSizeMaxTextSize="100sp"
+                        android:autoSizeMinTextSize="10sp"
+                        android:autoSizeStepGranularity="8sp"
+                        android:autoSizeTextType="uniform"
+                        android:gravity="center"
+                        android:padding="4dp"
+                        android:text="@string/td"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        tools:targetApi="o" />
+
+                <TextView
+                        android:id="@+id/txtTP"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="0dp"
+                        android:layout_weight="1"
+                        android:autoSizeMaxTextSize="100sp"
+                        android:autoSizeMinTextSize="10sp"
+                        android:autoSizeStepGranularity="8sp"
+                        android:autoSizeTextType="uniform"
+                        android:gravity="center"
+                        android:padding="4dp"
+                        android:text="@string/tp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        tools:targetApi="o" />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/NoteLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+
+                    android:background="@drawable/all_shadow"
+                    android:baselineAligned="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                <EditText
+                        android:id="@+id/editCOURS"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="2dp"
+                        android:layout_weight="1"
+                        android:autofillHints=""
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="@string/threePTS"
+                        android:inputType="numberDecimal"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        tools:targetApi="o" />
+
+                <EditText
+                        android:id="@+id/editTD"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="2dp"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="@string/threePTS"
+                        android:importantForAutofill="no"
+                        android:inputType="numberDecimal"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        tools:targetApi="o" />
+
+                <EditText
+                        android:id="@+id/editTP"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="2dp"
+                        android:layout_weight="1"
+                        android:autofillHints=""
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="@string/threePTS"
+                        android:inputType="numberDecimal"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        tools:targetApi="o" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+                android:id="@+id/modNAME"
+                android:layout_width="@dimen/modNAME_W"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingTop="6dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="6dp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/ModName_TXT"
+                tools:ignore="RtlHardcoded" />
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

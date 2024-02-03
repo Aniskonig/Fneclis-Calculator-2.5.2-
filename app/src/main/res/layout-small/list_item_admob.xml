@@ -1,0 +1,19 @@
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/Ridl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="vertical" android:layout_alignParentTop="true"
+        android:gravity="center|center_horizontal|center_vertical" android:layout_marginBottom="8dp"
+        app:layout_gravity="center" android:visibility="gone">
+
+    <com.google.android.gms.ads.AdView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/dialogAdView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="@string/adUnitId"></com.google.android.gms.ads.AdView>
+
+</RelativeLayout>
