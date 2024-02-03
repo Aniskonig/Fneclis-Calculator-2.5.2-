@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Relat"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color">
+
+    <ImageButton
+        android:id="@+id/closeAds"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="6dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/close_ic"
+        android:contentDescription="@string/todo" />
+
+    <TextView
+            android:id="@+id/exitTXT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:focusable="true"
+            android:fontFamily="@font/monadi"
+            android:gravity="center"
+            android:text="@string/noThanks"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp" android:layout_marginTop="50dp" android:layout_below="@+id/dialogAdView"
+            android:clickable="true"/>
+
+    <com.google.android.gms.ads.AdView
+            android:id="@+id/dialogAdView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ads:adSize="MEDIUM_RECTANGLE "
+            ads:adUnitId="@string/adUnitId" android:layout_centerHorizontal="true" android:layout_below="@+id/text"
+            android:layout_marginTop="30dp"/>
+
+    <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/closeAds"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="8dp"
+            android:fontFamily="@font/monadi"
+            android:gravity="center"
+            android:text="@string/forFree"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+    <!-- view for AdMob Banner Ad -->
+
+</RelativeLayout>
