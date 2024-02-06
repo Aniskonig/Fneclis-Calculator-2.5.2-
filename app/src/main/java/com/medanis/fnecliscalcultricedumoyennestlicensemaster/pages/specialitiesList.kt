@@ -153,7 +153,7 @@ class specialitiesList : AppCompatActivity() {
             //licenseSPECIALITIES.add(Spetialities("PHN" , "Propulsion et Hydrodynamique navales", R.drawable.propulsion_et_hydrodynamique_navales,mySPECIALITY))
             //licenseSPECIALITIES.add(Spetialities("CAN" , "Construction et architecture navales", R.drawable.construction_et_architecture_navales,mySPECIALITY))
             licenseSPECIALITIES.add(Spetialities("ENR", "Energétique", mySPECIALITY))
-//        licenseSPECIALITIES.add(Spetialities("CM" , "Construction mécanique", mySPECIALITY))
+            licenseSPECIALITIES.add(Spetialities("CM" , "Construction mécanique", mySPECIALITY))
 //licenseSPECIALITIES.add(Spetialities("","",0,mySPECIALITY))
             licenseSPECIALITIES.add(Spetialities("GM", "Génie des matériaux", mySPECIALITY))
             licenseSPECIALITIES.add(Spetialities("HYD", "Hydraulique", mySPECIALITY))

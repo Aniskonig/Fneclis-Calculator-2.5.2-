@@ -235,14 +235,16 @@ class CalculatingPage : AppCompatActivity() {
         val adRequestADS = AdRequest.Builder()
             .setRequestAgent("android_studio:ad_template")
             .build()
-        mydialogADS.findViewById<com.google.android.gms.ads.AdView>(R.id.dialogAdView).loadAd(adRequestADS)
-        mydialogADS.findViewById<com.google.android.gms.ads.AdView>(R.id.dialogAdView).adListener = object : AdListener() {
-            override fun onAdLoaded() {
-                if (!dialog.isShowing) {
-                    dialogADS.show()
+        mydialogADS.findViewById<com.google.android.gms.ads.AdView>(R.id.dialogAdView)
+            .loadAd(adRequestADS)
+        mydialogADS.findViewById<com.google.android.gms.ads.AdView>(R.id.dialogAdView).adListener =
+            object : AdListener() {
+                override fun onAdLoaded() {
+                    if (!dialog.isShowing) {
+                        dialogADS.show()
+                    }
                 }
             }
-        }
         fneclisADS.setOnClickListener {
             val appPackageName = "com.medanis.fneclis"
 
