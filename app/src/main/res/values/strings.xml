@@ -37,7 +37,7 @@
     <string name="wi_fi">لتوفير أفضل جو للمستخدم يقوم هذا التطبيق بتفعيل الواي فاي (Wi-Fi) تلقائيا</string>
     <string name="agree">حسنا</string>
     <string name="noThanks">لا شكرا</string>
-    <string name="policy">سياسة الخصوصية</string>
+    <string name="policy">Politique de confidentialité</string>
     <string name="privacyTXT">بما ان رضاكم عن تطبيقنا هو أعلى نقطة في هرم أهدافنا، و لأننا نسعى دائما لتقديم الأفضل فقط لأننا نتعامل مع الأفضل، كان لزاماً علينا أن نعلمك عزيز المستخدم بكل البيانات التي عليك توفيرها للتطبيق ليقدم لك أفضل أداء ممكن. لذا أدعوك عزيز المستخدم إلى أن تشرفنا بزيارتك .لموقعنا و الإطلاع على سياسة الخصوصية المتعلقة بالتطبيق.</string>
     <string name="privacyBtnTxt">سياسة الخصوصية</string>
     <string name="contentTxt">كما يمكنك الإطلاع على سياسة المحتوى كما هو مبين أدناه</string>
@@ -45,6 +45,15 @@
     <string name="calculer">Calculer</string>
     <string name="rechercher">Rechercher</string>
     <string name="save">Save</string>
-
-
+    <string name="r_sultats_enregistr_s">Résultats enregistrés</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="envoyer">Envoyer</string>
+    <string name="merci_d_avoir_signal_ce_probl_me_nous_vous_contacterons_par_e_mail_le_plus_rapidement_possible">Merci
+        d’avoir signalé ce problème, nous vous contacterons par e-mail le plus rapidement possible
+    </string>
+    <string name="motionn_e_brievement_le_probl_me_dans_cette_question">Motionnée brievement le problème dans cette
+        question
+    </string>
+    <string name="les_r_sultats_ont_t_supprim_s">Les résultats ont été supprimés..Vous devrez peut-être actualiser la page pour voir les résultats</string>
 </resources>

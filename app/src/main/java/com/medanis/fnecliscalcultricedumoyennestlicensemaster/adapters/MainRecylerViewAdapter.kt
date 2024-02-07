@@ -13,18 +13,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.common.reflect.TypeToken
+import com.google.gson.Gson
 import com.medanis.fnecliscalcultricedumoyennestlicensemaster.R
 import com.medanis.fnecliscalcultricedumoyennestlicensemaster.models.MODULE
 import com.medanis.fnecliscalcultricedumoyennestlicensemaster.others.InputFilterMinMax
+import com.medanis.fnecliscalcultricedumoyennestlicensemaster.others.getHistoryArray
+import com.medanis.fnecliscalcultricedumoyennestlicensemaster.others.saveHistoryArray
+import java.lang.reflect.Type
 
 
 class MainRecylerViewAdapter(private val mContext: Context, var mData: MutableList<MODULE>) : RecyclerView.Adapter<MainRecylerViewAdapter.MyModulesAdapter>() {
 
-
+    val  mFilteredList : MutableList<MODULE>? = null
 
     override fun getItemViewType(position: Int): Int {
         return mData[position].viewType

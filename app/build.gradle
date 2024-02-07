@@ -12,8 +12,8 @@ android {
         applicationId = "com.medanis.fnecliscalcultricedumoyennestlicensemaster"
         minSdk = 24
         targetSdk = 34
-        versionCode = 33
-        versionName = "2.6.3"
+        versionCode = 34
+        versionName = "2.7.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -108,4 +108,7 @@ dependencies {
 
     // fix Error: null, Cannot fit requested
     implementation 'androidx.multidex:multidex:2.0.1'
+
+    implementation 'com.google.code.gson:gson:2.10'
+
 }

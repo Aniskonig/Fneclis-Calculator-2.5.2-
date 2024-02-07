@@ -193,10 +193,37 @@
             android:textSize="18sp"
             android:visibility="gone" />
 
-<!--    <Button-->
-<!--            android:id="@+id/saveRestoreButton"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/save" />-->
+
+    <Button
+            android:id="@+id/down"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:layout_toEndOf="@id/LL"
+            android:background="@drawable/ic_down" />
+    <RelativeLayout
+            android:id='@+id/LL'
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="false"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/trans_menu_webview"
+            android:padding="10dp">
+
+        <Button
+                android:id="@+id/saveRetrieveData"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="false"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/icon_save"
+                android:contentDescription="@string/todo" />
+
+    </RelativeLayout>
 
 </RelativeLayout>
