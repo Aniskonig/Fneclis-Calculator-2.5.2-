@@ -16,10 +16,8 @@ import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.medanis.fnecliscalcultricedumoyennestlicensemaster.R
@@ -105,8 +103,18 @@ class specialitiesList : AppCompatActivity() {
         query1 = query1.toLowerCase()
         val filteredModeList = java.util.ArrayList<Spetialities>()
         for (model in pl) {
-            val abriName = model.getabriNAME()!!.toLowerCase()
+            val isHistory = intent.getBooleanExtra("isHistory", false)
+            var abriName = ""
             val fullName = model.getspecialityFullName()!!.toLowerCase()
+
+            if (isHistory){
+                abriName = CalculatingPage().getLevelYearSemesterInArabic(
+                    model.getlevelYearSemester()
+                ) + " " +CalculatingPage().getMajorsNameInArabic(model.getabriNAME())!!.toLowerCase()
+
+            }else{
+                abriName = model.getabriNAME()!!.toLowerCase()
+            }
 
             if (fullName.startsWith(query1) || (fullName.contains(query1)) || (abriName.contains(
                     query1
@@ -318,35 +326,74 @@ class specialitiesList : AppCompatActivity() {
         setContentView(R.layout.activity_specialities_list)
 //        val Home  = findViewById<ImageButton>(R.id.Home)
         val isHistory = intent.getBooleanExtra("isHistory", false)
-        Log.e("isHistory", isHistory.toString())
+
         if (isHistory) {
 
-            licenseSPECIALITIES.clear()
-
-            if (getHistoryArray(this, "history_array") != null){
-                for (i in getHistoryArray(this, "history_array") as Array<String>){
+            var myHistoryDataList: MutableList<Spetialities> = ArrayList()
+            var myHistoryDataList_old: MutableList<Spetialities> = ArrayList()
+            if (getHistoryArray(this, "history_array") != null) {
+                for (i in getHistoryArray(this, "history_array") as Array<String>) {
                     val mySPECIALITY_old = i.split("&&")[0]
                     val sPECIALITY_old = i.split("&&")[1]
                     val getCurrentDateTime = i.split("&&")[2]
 
-                    licenseSPECIALITIES.add(Spetialities(sPECIALITY_old, getCurrentDateTime, mySPECIALITY_old))
+                    myHistoryDataList.add(
+                        Spetialities(
+                            sPECIALITY_old,
+                            getCurrentDateTime,
+                            mySPECIALITY_old
+                        )
+                    )
                 }
             }
 
-//            mySPECIALITY = intent.getStringExtra("LEVEL+YEAR+SEMSTER").toString()
-//            licenseSPECIALITIES.add(Spetialities("TC", "Telecommunication", mySPECIALITY))
             val myrv = findViewById<RecyclerView>(R.id.recyclerView)
-            myHistoryRVAdapter = HistoryRVA(this, licenseSPECIALITIES)
+            myHistoryRVAdapter = HistoryRVA(this, myHistoryDataList)
             myrv.layoutManager =
                 GridLayoutManager(this, 1)
             myrv.adapter = myHistoryRVAdapter
-        }
-        else {
+
+            myHistoryDataList_old.addAll(myHistoryDataList)
+            val searBarET = findViewById<EditText>(R.id.editText)
+            val nothingfoundIV = findViewById<ImageView>(R.id.nothingfound)
+            showADS()
+            searBarET.addTextChangedListener(object : TextWatcher {
+
+                override fun afterTextChanged(p0: Editable?) {
+                    myHistoryDataList.clear()
+                    Log.e("myHistoryDataList_old", myHistoryDataList_old.joinToString())
+                    myHistoryDataList.addAll(myHistoryDataList_old)
+                    Log.e("myHistoryDataList", myHistoryDataList.joinToString())
+
+                    if (p0!!.isNotEmpty()) {
+                        val filtermodelist = filter(myHistoryDataList, p0.toString())
+                        myHistoryRVAdapter!!.setfilter(filtermodelist)
+                    }
+                    if (myHistoryDataList.isNotEmpty()) {
+                        nothingfoundIV.visibility = View.GONE
+                    }
+
+                }
+
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                }
+
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                    val filtermodelist = filter(myHistoryDataList, p0.toString())
+                    myHistoryRVAdapter!!.setfilter(filtermodelist)
+                    if (filtermodelist.isEmpty()) {
+                        nothingfoundIV.visibility = View.VISIBLE
+                    }
+
+                }
+            })
+        } else {
             prepareAd()
 
 //        val imageButton  = findViewById<ImageButton>(R.id.imageButton)
-            val editText = findViewById<EditText>(R.id.editText)
-            val nothingfound = findViewById<ImageView>(R.id.nothingfound)
+
             if (scheduler == null) {
                 scheduler = Executors.newSingleThreadScheduledExecutor()
                 scheduler!!.scheduleAtFixedRate({
@@ -424,21 +471,25 @@ class specialitiesList : AppCompatActivity() {
 //            startActivity(Intent(this, MainActivity::class.java))
 //        }
 
+
+            val searBarET = findViewById<EditText>(R.id.editText)
+            val nothingfoundIV = findViewById<ImageView>(R.id.nothingfound)
             showADS()
-            editText.addTextChangedListener(object : TextWatcher {
+            searBarET.addTextChangedListener(object : TextWatcher {
 
                 override fun afterTextChanged(p0: Editable?) {
                     licenseSPECIALITIES.clear()
                     masterSPECIALITIES.clear()
 
-                    clickedList(mySPECIALITY)
+                    clickedList(reverseNameSpeciality(mySPECIALITY))
+
                     if (level) {
                         if (p0!!.isNotEmpty()) {
                             val filtermodelist = filter(masterSPECIALITIES, p0.toString())
                             myMainAdapter!!.setfilter(filtermodelist)
                         }
                         if (masterSPECIALITIES.isNotEmpty()) {
-                            nothingfound.visibility = View.GONE
+                            nothingfoundIV.visibility = View.GONE
                         }
 
                     } else {
@@ -447,7 +498,7 @@ class specialitiesList : AppCompatActivity() {
                             myMainAdapter!!.setfilter(filtermodelist)
                         }
                         if (licenseSPECIALITIES.isNotEmpty()) {
-                            nothingfound.visibility = View.GONE
+                            nothingfoundIV.visibility = View.GONE
                         }
                     }
                 }
@@ -460,30 +511,45 @@ class specialitiesList : AppCompatActivity() {
                         val filtermodelist = filter(masterSPECIALITIES, p0.toString())
                         myMainAdapter!!.setfilter(filtermodelist)
                         if (filtermodelist.isEmpty()) {
-                            nothingfound.visibility = View.VISIBLE
+                            nothingfoundIV.visibility = View.VISIBLE
                         }
                     } else {
                         val filtermodelist = filter(licenseSPECIALITIES, p0.toString())
                         myMainAdapter!!.setfilter(filtermodelist)
                         if (filtermodelist.isEmpty()) {
-                            nothingfound.visibility = View.VISIBLE
+                            nothingfoundIV.visibility = View.VISIBLE
                         }
                     }
 
 
                 }
             })
-//        editText.visibility= View.INVISIBLE
-//        imageButton.setOnClickListener {
-//            imageButton.visibility=View.GONE
-//            editText.visibility=View.VISIBLE
-//        }
+
             nameSpeciality()
             val textView = findViewById<TextView>(R.id.textView)
             textView.text = mySPECIALITY
             showADS()
         }
+//        editText.visibility= View.INVISIBLE
+//        imageButton.setOnClickListener {
+//            imageButton.visibility=View.GONE
+//            editText.visibility=View.VISIBLE
+//        }
     }
 
+    fun reverseNameSpeciality(mySPECIALITY: String): String {
+        return when (mySPECIALITY) {
+            "السّنة الأولى ليسانس، السّداسي الأوّل" -> "License firstYEAR firstSEMSTER"
+            "السّنة الأولى ليسانس، السّداسي الثّاني" -> "License firstYEAR secondSEMSTER"
+            "السّنة الثّانية ليسانس، السّداسي الثّالث" -> "License secondYEAR firstSEMSTER"
+            "السّنة الثّانية ليسانس، السّداسي الرّابع" -> "License secondYEAR secondSEMSTER"
+            "السّنة الثّالثة ليسانس، السّداسي الخامس" -> "License thirdYEAR firstSEMSTER"
+            "السّنة الثّالثة ليسانس، السّداسي السّادس" -> "License thirdYEAR secondSEMSTER"
+            "السّنة الأولى ماستر، السّداسي الأوّل" -> "Master firstYEAR firstSEMSTER"
+            "السّنة الأولى ماستر، السّداسي الثّاني" -> "Master firstYEAR secondSEMSTER"
+            "السّنة الثّانية ماستر، السّداسي الثّالث" -> "Master secondYEAR firstSEMSTER"
+            else -> ""
+        }
+    }
 }
 

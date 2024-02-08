@@ -14,7 +14,7 @@ import com.medanis.fnecliscalcultricedumoyennestlicensemaster.R
 import com.medanis.fnecliscalcultricedumoyennestlicensemaster.models.Spetialities
 
 
-class SpecialitiesListRecyclerViewAdapter( val mContext: Context, val mData: MutableList<Spetialities>) :  RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class SpecialitiesListRecyclerViewAdapter(val mContext: Context, private val mData: MutableList<Spetialities>) :  RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var mFilteredList: MutableList<Spetialities> = mData
 
 

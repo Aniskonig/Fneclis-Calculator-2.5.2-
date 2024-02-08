@@ -37,6 +37,9 @@
     <dimen name="modNAME_W">170dp</dimen>
     <dimen name="CoursTxt_size">8sp</dimen>
     <dimen name="ModName_TXT">18sp</dimen>
+    <dimen name="LM_btn_H">35dp</dimen>
+    <dimen name="faceSize">40dp</dimen>
+
     <dimen name="CarVie_H">150dp</dimen>
     <dimen name="specialityName_H">75dp</dimen>
     <dimen name="txtCOURS_Size">12sp</dimen>
