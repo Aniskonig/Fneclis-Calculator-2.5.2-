@@ -4,15 +4,12 @@ import android.animation.Animator
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.media.MediaPlayer
 import android.net.ConnectivityManager
-import android.net.Uri
 import android.net.wifi.WifiManager
 import android.os.Build
-import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
 import android.util.Log
@@ -21,7 +18,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdListener
@@ -33,17 +29,28 @@ import com.medanis.fnecliscalcultricedumoyennestlicensemaster.models.MODULE
 import com.medanis.fnecliscalcultricedumoyennestlicensemaster.R
 import com.medanis.fnecliscalcultricedumoyennestlicensemaster.adapters.MainRecylerViewAdapter
 import com.medanis.fnecliscalcultricedumoyennestlicensemaster.others.getModulesFromSharedPreferences
+import com.medanis.fnecliscalcultricedumoyennestlicensemaster.others.initEmoji
 import com.medanis.fnecliscalcultricedumoyennestlicensemaster.others.saveModulesInSharedPreferences
+import com.medanis.fnecliscalcultricedumoyennestlicensemaster.others.updateTheEmoji
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.util.concurrent.ScheduledExecutorService
 import java.util.Date
 import java.text.SimpleDateFormat
+import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
+import android.os.Bundle
+import android.provider.MediaStore
+import android.text.TextUtils
+import android.widget.Button
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class CalculatingPage : AppCompatActivity() {
-
-    fun getMajorsNameInArabic(major: String?): String{
+    private val REQUEST_IMAGE_CAPTURE = 1
+    fun getMajorsNameInArabic(major: String?): String {
         if (major == "Telecommunication") {
             return "تخصّص إتصالات سلكية و لا سلكية"
         } else if (major == "Réseaux & Telecommunication") {
@@ -162,8 +169,8 @@ class CalculatingPage : AppCompatActivity() {
             return ""
         }
     }
-    
-    fun getLevelYearSemesterInArabic(text: String?) : String{
+
+    fun getLevelYearSemesterInArabic(text: String?): String {
         if (text == "License firstYEAR firstSEMSTER" || text == "السّنة الأولى ليسانس، السّداسي الأوّل") {
             return "السّنة الأولى ليسانس، السّداسي الأوّل"
         } else if (text == "License firstYEAR secondSEMSTER" || text == "السّنة الأولى ليسانس، السّداسي الثّاني") {
@@ -187,6 +194,7 @@ class CalculatingPage : AppCompatActivity() {
         }
         return ""
     }
+
     private fun getCurrentDateTime(): String {
         val currentDate = Date()
         val formatter = SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
@@ -293,7 +301,7 @@ class CalculatingPage : AppCompatActivity() {
         setContentView(R.layout.activity_calculating_page)
         val builder = AlertDialog.Builder(this)
         val dialog: AlertDialog = builder.create()
-        var myModulesAdapter : MainRecylerViewAdapter? = null
+        var myModulesAdapter: MainRecylerViewAdapter? = null
 
         val isHistory = intent.getBooleanExtra("isHistory", false)
         Log.e("isHistory", isHistory.toString())
@@ -303,14 +311,20 @@ class CalculatingPage : AppCompatActivity() {
             if (mySPECIALITY == null) {
                 mySPECIALITY = intent.getStringExtra("LEVEL+YEAR+SEMSTER")
             }
-            val mySPECIALITY_old= mySPECIALITY
+            val mySPECIALITY_old = mySPECIALITY
             val sPECIALITY = intent.getStringExtra("SpecialityNAME")?.split("&&")!!
 
             mySPECIALITY = getLevelYearSemesterInArabic(mySPECIALITY)
 
-            findViewById<TextView>(R.id.textViewSPECIALITY).text = "$mySPECIALITY ${getMajorsNameInArabic(sPECIALITY[0])}"
+            findViewById<TextView>(R.id.textViewSPECIALITY).text =
+                "$mySPECIALITY ${getMajorsNameInArabic(sPECIALITY[0])}"
 
-            licenseMODULES = getModulesFromSharedPreferences(this, mySPECIALITY_old, sPECIALITY[0], sPECIALITY[1])!!
+            licenseMODULES = getModulesFromSharedPreferences(
+                this,
+                mySPECIALITY_old,
+                sPECIALITY[0],
+                sPECIALITY[1]
+            )!!
             myModulesAdapter = MainRecylerViewAdapter(this, licenseMODULES)
 
             val myrv = findViewById<RecyclerView>(R.id.rvCalPage)
@@ -399,8 +413,6 @@ class CalculatingPage : AppCompatActivity() {
                 }
             }
 //    val adViewADS = findViewById<AdView>(R.id.dialogAdView)
-
-
 
 
             mydialogADS.findViewById<TextView>(R.id.exitTXT).setOnClickListener {
@@ -4454,36 +4466,41 @@ class CalculatingPage : AppCompatActivity() {
 //
 //// Check if the current background drawable is equal to @drawable/icon_save
 //                if (currentBackgroundDrawable == ContextCompat.getDrawable(this, R.drawable.icon_save)?.constantState) {
-                    // If the background drawable is @drawable/icon_save, change it to @drawable/icon_save_filled
-                    saveRetrieveButton.setBackgroundResource(R.drawable.icon_save_filled)
-                    saveModulesInSharedPreferences(
-                        this,
-                        myModulesAdapter.mData,
-                        mySPECIALITY_old,
-                        sPECIALITY_old,
-                        getCurrentDateTime()
-                    )
+                // If the background drawable is @drawable/icon_save, change it to @drawable/icon_save_filled
+                saveRetrieveButton.setBackgroundResource(R.drawable.icon_save_filled)
+                saveModulesInSharedPreferences(
+                    this,
+                    myModulesAdapter.mData,
+                    mySPECIALITY_old,
+                    sPECIALITY_old,
+                    getCurrentDateTime()
+                )
 
-                    Toast.makeText(this, "Résultats enregistrés avec succès le ${getCurrentDateTime()}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    "Résultats enregistrés avec succès le ${getCurrentDateTime()}",
+                    Toast.LENGTH_SHORT
+                ).show()
 //                } else {
 //
 //                }
 
             }
             findViewById<Button>(R.id.down).setOnClickListener {
-                if (findViewById<RelativeLayout>(R.id.LL).visibility!= View.VISIBLE){
-                    findViewById<RelativeLayout>(R.id.LL).visibility= View.VISIBLE
+                if (findViewById<LinearLayout>(R.id.LL).visibility != View.VISIBLE) {
+                    findViewById<LinearLayout>(R.id.LL).visibility = View.VISIBLE
                     findViewById<Button>(R.id.down).setBackgroundResource(R.drawable.ic_down)
-                }else{
-                    findViewById<RelativeLayout>(R.id.LL).visibility= View.GONE
+                } else {
+                    findViewById<LinearLayout>(R.id.LL).visibility = View.GONE
                     findViewById<Button>(R.id.down).setBackgroundResource(R.drawable.ic_up)
                 }
             }
             Handler().postDelayed({
-                if (findViewById<RelativeLayout>(R.id.LL).visibility == View.VISIBLE){
-                    findViewById<RelativeLayout>(R.id.LL).visibility= View.GONE
+                if (findViewById<LinearLayout>(R.id.LL).visibility == View.VISIBLE) {
+                    findViewById<LinearLayout>(R.id.LL).visibility = View.GONE
                     findViewById<Button>(R.id.down).setBackgroundResource(
-                        R.drawable.ic_up)
+                        R.drawable.ic_up
+                    )
                 }
             }, 10000)
 //
@@ -4550,415 +4567,279 @@ class CalculatingPage : AppCompatActivity() {
 //                }
 //            }
         }
-            /*
-        licenseMODULES.add(MODULE("module TD + CR 3",3.0))
-        licenseMODULES.add(MODULE("module TP + CR 3",3.1))
-        licenseMODULES.add(MODULE("module TP 3",3.2))
-        licenseMODULES.add(MODULE("module TP+TD*0.5 + CR*0.5 3",3.3))
-        licenseMODULES.add(MODULE("module TD + CR 2",2.0))
-        licenseMODULES.add(MODULE("module TP + CR 2",2.1))
-        licenseMODULES.add(MODULE("module CR 2",2.2))
-        licenseMODULES.add(MODULE("module TP 2",2.3))
-        licenseMODULES.add(MODULE("module CR 1",1.0))
-        licenseMODULES.add(MODULE("module TP 1",1.1))
-        licenseMODULES.add(MODULE("module CR + TP 1",1.2))
-        licenseMODULES.add(MODULE("module CR + TD 1",1.3))
+        /*
+    licenseMODULES.add(MODULE("module TD + CR 3",3.0))
+    licenseMODULES.add(MODULE("module TP + CR 3",3.1))
+    licenseMODULES.add(MODULE("module TP 3",3.2))
+    licenseMODULES.add(MODULE("module TP+TD*0.5 + CR*0.5 3",3.3))
+    licenseMODULES.add(MODULE("module TD + CR 2",2.0))
+    licenseMODULES.add(MODULE("module TP + CR 2",2.1))
+    licenseMODULES.add(MODULE("module CR 2",2.2))
+    licenseMODULES.add(MODULE("module TP 2",2.3))
+    licenseMODULES.add(MODULE("module CR 1",1.0))
+    licenseMODULES.add(MODULE("module TP 1",1.1))
+    licenseMODULES.add(MODULE("module CR + TP 1",1.2))
+    licenseMODULES.add(MODULE("module CR + TD 1",1.3))
 */
 
 
-            session = 0
-            fun claculation() {
-                Log.e("dadadada", myModulesAdapter?.mData.toString())
-                findViewById<Button>(R.id.saveRetrieveData).setBackgroundResource(R.drawable.icon_save)
-                val pojoArrayList = myModulesAdapter!!.mData
-                var prbPOS = ""
-                var TOTAL = 0.0
-                var voidCOUNTER = 0.0
-                val df = DecimalFormat("#.##")
-                df.roundingMode = RoundingMode.CEILING
+        session = 0
+        fun claculation() {
+            Log.e("dadadada", myModulesAdapter?.mData.toString())
+            findViewById<Button>(R.id.saveRetrieveData).setBackgroundResource(R.drawable.icon_save)
+            val pojoArrayList = myModulesAdapter!!.mData
+            var prbPOS = ""
+            var TOTAL = 0.0
+            var voidCOUNTER = 0.0
+            val df = DecimalFormat("#.##")
+            df.roundingMode = RoundingMode.CEILING
+            for (i in 0 until myModulesAdapter.mData!!.size) {
+                TOTAL += pojoArrayList[i].getmodVal()!!
+            }
+            moy = 0.0
+            moy = (TOTAL / ttCoeff)
+            fun testBYelement(allORnot: Boolean) {
+                Log.e("testBYelement", "testBYelementtestBYelementtestBYelementtestBYelement")
                 for (i in 0 until myModulesAdapter.mData!!.size) {
-                    TOTAL += pojoArrayList[i].getmodVal()!!
-                }
-                moy = 0.0
-                moy = (TOTAL / ttCoeff)
-                fun testBYelement(allORnot: Boolean) {
-                    Log.e("testBYelement", "testBYelementtestBYelementtestBYelementtestBYelement")
-                    for (i in 0 until myModulesAdapter.mData!!.size) {
-                        if ((pojoArrayList[i].getexistCOURS() == true) && (pojoArrayList[i].getexistTD() == true) && (pojoArrayList[i].getexistTP() == false)) {
-                            if (pojoArrayList[i].getCourseMARK() == 15.0 && pojoArrayList[i].getTdMARK() == 10.0) {
-                                moy = 25.0
-                                voidCOUNTER += 1
-                                prbPOS =
-                                    "لقد نسيت إدخال النقاط الخاصة بدروس و TD لمقياس " + "\n" + pojoArrayList[i].getmoduleName()
-                                        .toString()
-                                if (allORnot) {
-                                    break
-                                }
-                            } else if (pojoArrayList[i].getTdMARK() == 10.0 && pojoArrayList[i].getCourseMARK() != 15.0) {
-                                moy = 25.0
-                                prbPOS =
-                                    "لقد نسيت إدخال النقطة الخاصة بـ TD مقياس " + "\n" + pojoArrayList[i].getmoduleName()
-                                        .toString()
-                                voidCOUNTER += 1
-                                if (allORnot) {
-                                    break
-                                }
+                    if ((pojoArrayList[i].getexistCOURS() == true) && (pojoArrayList[i].getexistTD() == true) && (pojoArrayList[i].getexistTP() == false)) {
+                        if (pojoArrayList[i].getCourseMARK() == 15.0 && pojoArrayList[i].getTdMARK() == 10.0) {
+                            moy = 25.0
+                            voidCOUNTER += 1
+                            prbPOS =
+                                "لقد نسيت إدخال النقاط الخاصة بدروس و TD لمقياس " + "\n" + pojoArrayList[i].getmoduleName()
+                                    .toString()
+                            if (allORnot) {
+                                break
+                            }
+                        } else if (pojoArrayList[i].getTdMARK() == 10.0 && pojoArrayList[i].getCourseMARK() != 15.0) {
+                            moy = 25.0
+                            prbPOS =
+                                "لقد نسيت إدخال النقطة الخاصة بـ TD مقياس " + "\n" + pojoArrayList[i].getmoduleName()
+                                    .toString()
+                            voidCOUNTER += 1
+                            if (allORnot) {
+                                break
+                            }
 
-                            } else if (pojoArrayList[i].getTdMARK() != 10.0 && pojoArrayList[i].getCourseMARK() == 15.0) {
-                                moy = 25.0
-                                voidCOUNTER += 1
-                                prbPOS =
-                                    "لقد نسيت إدخال النقطة الخاصة بدروس مقياس " + "\n" + pojoArrayList[i].getmoduleName()
-                                        .toString()
-                                if (allORnot) {
-                                    break
-                                }
+                        } else if (pojoArrayList[i].getTdMARK() != 10.0 && pojoArrayList[i].getCourseMARK() == 15.0) {
+                            moy = 25.0
+                            voidCOUNTER += 1
+                            prbPOS =
+                                "لقد نسيت إدخال النقطة الخاصة بدروس مقياس " + "\n" + pojoArrayList[i].getmoduleName()
+                                    .toString()
+                            if (allORnot) {
+                                break
                             }
-                        } else if ((pojoArrayList[i].getexistCOURS() == true) && (pojoArrayList[i].getexistTP() == true) && (pojoArrayList[i].getexistTD() == false)) {
-                            if (pojoArrayList[i].getTpMARK() == 25.0 && pojoArrayList[i].getCourseMARK() == 15.0) {
-                                moy = 25.0
-                                voidCOUNTER += 1
-                                prbPOS =
-                                    "لقد نسيت إدخال النقاط الخاصة بدروس و TP لمقياس " + "\n" + pojoArrayList[i].getmoduleName()
-                                        .toString()
-                                if (allORnot) {
-                                    break
-                                }
-                            } else if (pojoArrayList[i].getTpMARK() == 25.0 && pojoArrayList[i].getCourseMARK() != 15.0) {
-                                moy = 25.0
-                                voidCOUNTER += 1
-                                prbPOS =
-                                    "لقد نسيت إدخال النقطة الخاصة بـ TP مقياس " + "\n" + pojoArrayList[i].getmoduleName()
-                                        .toString()
-                                if (allORnot) {
-                                    break
-                                }
-                            } else if (pojoArrayList[i].getTpMARK() != 25.0 && pojoArrayList[i].getCourseMARK() == 15.0) {
-                                moy = 25.0
-                                voidCOUNTER += 1
-                                prbPOS =
-                                    "لقد نسيت إدخال النقطة الخاصة بدروس مقياس " + "\n" + pojoArrayList[i].getmoduleName()
-                                        .toString()
-                                if (allORnot) {
-                                    break
-                                }
+                        }
+                    } else if ((pojoArrayList[i].getexistCOURS() == true) && (pojoArrayList[i].getexistTP() == true) && (pojoArrayList[i].getexistTD() == false)) {
+                        if (pojoArrayList[i].getTpMARK() == 25.0 && pojoArrayList[i].getCourseMARK() == 15.0) {
+                            moy = 25.0
+                            voidCOUNTER += 1
+                            prbPOS =
+                                "لقد نسيت إدخال النقاط الخاصة بدروس و TP لمقياس " + "\n" + pojoArrayList[i].getmoduleName()
+                                    .toString()
+                            if (allORnot) {
+                                break
                             }
-                        } else if (pojoArrayList[i].getexistCOURS() == true && pojoArrayList[i].getexistTP() == false && pojoArrayList[i].getexistTD() == false) {
-                            if (pojoArrayList[i].getCourseMARK() == 15.0) {
-                                moy = 25.0
-                                voidCOUNTER += 1
-                                prbPOS =
-                                    "لقد نسيت إدخال النقطة الخاصة بدروس مقياس " + "\n" + pojoArrayList[i].getmoduleName()
-                                        .toString()
-                                if (allORnot) {
-                                    break
-                                }
+                        } else if (pojoArrayList[i].getTpMARK() == 25.0 && pojoArrayList[i].getCourseMARK() != 15.0) {
+                            moy = 25.0
+                            voidCOUNTER += 1
+                            prbPOS =
+                                "لقد نسيت إدخال النقطة الخاصة بـ TP مقياس " + "\n" + pojoArrayList[i].getmoduleName()
+                                    .toString()
+                            if (allORnot) {
+                                break
                             }
-                        } else if (pojoArrayList[i].getexistTP() == true && pojoArrayList[i].getexistCOURS() == false) {
-                            if (pojoArrayList[i].getTpMARK() == 25.0) {
-                                moy = 25.0
-                                voidCOUNTER += 1.0
-                                prbPOS =
-                                    "لقد نسيت إدخال النقطة الخاصة بـ TP مقياس " + "\n" + pojoArrayList[i].getmoduleName()
-                                        .toString()
-                                if (allORnot) {
-                                    break
-                                }
+                        } else if (pojoArrayList[i].getTpMARK() != 25.0 && pojoArrayList[i].getCourseMARK() == 15.0) {
+                            moy = 25.0
+                            voidCOUNTER += 1
+                            prbPOS =
+                                "لقد نسيت إدخال النقطة الخاصة بدروس مقياس " + "\n" + pojoArrayList[i].getmoduleName()
+                                    .toString()
+                            if (allORnot) {
+                                break
+                            }
+                        }
+                    } else if (pojoArrayList[i].getexistCOURS() == true && pojoArrayList[i].getexistTP() == false && pojoArrayList[i].getexistTD() == false) {
+                        if (pojoArrayList[i].getCourseMARK() == 15.0) {
+                            moy = 25.0
+                            voidCOUNTER += 1
+                            prbPOS =
+                                "لقد نسيت إدخال النقطة الخاصة بدروس مقياس " + "\n" + pojoArrayList[i].getmoduleName()
+                                    .toString()
+                            if (allORnot) {
+                                break
+                            }
+                        }
+                    } else if (pojoArrayList[i].getexistTP() == true && pojoArrayList[i].getexistCOURS() == false) {
+                        if (pojoArrayList[i].getTpMARK() == 25.0) {
+                            moy = 25.0
+                            voidCOUNTER += 1.0
+                            prbPOS =
+                                "لقد نسيت إدخال النقطة الخاصة بـ TP مقياس " + "\n" + pojoArrayList[i].getmoduleName()
+                                    .toString()
+                            if (allORnot) {
+                                break
                             }
                         }
                     }
                 }
-                if (session == 0) {
-                    testBYelement(false)
-                    if (voidCOUNTER > 1.0) {
-                        prbPOS = "يبدو أنك لم تملئ جميع الخانات يا صديقي"
-                    }
-                    session = 1
-                } else {
-                    testBYelement(true)
+            }
+            if (session == 0) {
+                testBYelement(false)
+                if (voidCOUNTER > 1.0) {
+                    prbPOS = "يبدو أنك لم تملئ جميع الخانات يا صديقي"
                 }
-
-                if (moy == 25.0) {
-                    findViewById<TextView>(R.id.errorTextView).visibility = View.VISIBLE
-                    findViewById<TextView>(R.id.errorTextView).setBackgroundColor(Color.BLACK)
-                    findViewById<TextView>(R.id.errorTextView).text = prbPOS
-                    findViewById<TextView>(R.id.calculatingTV).text = getString(R.string.calculer)
-                } else {
-                    findViewById<TextView>(R.id.errorTextView).visibility = View.GONE
-                    findViewById<TextView>(R.id.calculatingTV).visibility = View.VISIBLE
-                    findViewById<TextView>(R.id.calculatingTV).text = df.format(moy).toString()
-                }
+                session = 1
+            } else {
+                testBYelement(true)
             }
 
-            val imm: InputMethodManager =
-                getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-
-            fun closeKeyboard(): Boolean {
-                val view: View? = this.currentFocus
-                if (view != null) {
-                    imm.hideSoftInputFromWindow(view.windowToken, 0)
-                    return true
-                } else {
-                    return false
-                }
+            if (moy == 25.0) {
+                findViewById<TextView>(R.id.errorTextView).visibility = View.VISIBLE
+                findViewById<TextView>(R.id.errorTextView).setBackgroundColor(Color.BLACK)
+                findViewById<TextView>(R.id.errorTextView).text = prbPOS
+                findViewById<TextView>(R.id.calculatingTV).text = getString(R.string.calculer)
+            } else {
+                findViewById<TextView>(R.id.errorTextView).visibility = View.GONE
+                findViewById<TextView>(R.id.calculatingTV).visibility = View.VISIBLE
+                findViewById<TextView>(R.id.calculatingTV).text = df.format(moy).toString()
             }
-            findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animation_view).addAnimatorListener(
-                object : Animator.AnimatorListener {
-                    override fun onAnimationStart(animation: Animator) {
-                        findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animation_view).visibility =
-                            View.VISIBLE
-                        findViewById<RecyclerView>(R.id.rvCalPage).visibility = View.INVISIBLE
-                    }
+        }
 
-                    override fun onAnimationEnd(animation: Animator) {
-                    }
+        val imm: InputMethodManager =
+            getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
-                    override fun onAnimationCancel(animation: Animator) {
-                    }
+        fun closeKeyboard(): Boolean {
+            val view: View? = this.currentFocus
+            if (view != null) {
+                imm.hideSoftInputFromWindow(view.windowToken, 0)
+                return true
+            } else {
+                return false
+            }
+        }
+        findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animation_view).addAnimatorListener(
+            object : Animator.AnimatorListener {
+                override fun onAnimationStart(animation: Animator) {
+                    findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animation_view).visibility =
+                        View.VISIBLE
+                    findViewById<RecyclerView>(R.id.rvCalPage).visibility = View.INVISIBLE
+                }
 
-                    override fun onAnimationRepeat(animation: Animator) {
-                    }
-                })
+                override fun onAnimationEnd(animation: Animator) {
+                }
+
+                override fun onAnimationCancel(animation: Animator) {
+                }
+
+                override fun onAnimationRepeat(animation: Animator) {
+                }
+            })
 
 
 //        val menuBtn = findViewById<ImageButton>(R.id.menu_btn)
-            val calBtn = findViewById<ImageButton>(R.id.cal_btn)
-            val resLL = findViewById<LinearLayout>(R.id.res_LL)
+        val calBtn = findViewById<ImageButton>(R.id.cal_btn)
+        val resLL = findViewById<LinearLayout>(R.id.res_LL)
 
-            val rvCAL: RelativeLayout.LayoutParams = RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.MATCH_PARENT,
-                RelativeLayout.LayoutParams.MATCH_PARENT
-            )
+        val rvCAL: RelativeLayout.LayoutParams = RelativeLayout.LayoutParams(
+            RelativeLayout.LayoutParams.MATCH_PARENT,
+            RelativeLayout.LayoutParams.MATCH_PARENT
+        )
 //        rvCAL.addRule(RelativeLayout.ABOVE,R.id.resulat_RL)
-            rvCAL.addRule(RelativeLayout.BELOW, R.id.textViewSPECIALITY)
-
+        rvCAL.addRule(RelativeLayout.BELOW, R.id.textViewSPECIALITY)
 
 
 //        val builder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         val mydialog = inflater.inflate(R.layout.rateus, null)
         builder.setView(mydialog)
-//        val dialog: AlertDialog = builder.create()
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        val alertDialog: AlertDialog = builder.create()
+        alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         mydialog.findViewById<ImageButton>(R.id.exit).setOnClickListener {
-            dialog.dismiss()
+            alertDialog.dismiss()
         }
 
-
+//        val inflater = layoutInflater
+        val myReportdialog = inflater.inflate(R.layout.report_dialog, null)
+        builder.setView(myReportdialog)
+        val reportAlertDialog: AlertDialog = builder.create()
+        reportAlertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        myReportdialog.findViewById<ImageButton>(R.id.exit).setOnClickListener {
+            reportAlertDialog.dismiss()
+        }
+        myReportdialog.findViewById<Button>(R.id.send).setOnClickListener {
+            if (TextUtils.isEmpty(myReportdialog.findViewById<EditText>(R.id.editText).text.trim())) {
+                myReportdialog.findViewById<EditText>(R.id.editText).error = "écrivez-nous votre problème"
+                myReportdialog.findViewById<EditText>(R.id.editText).requestFocus()
+                return@setOnClickListener
+            }
+            sendEmail(
+                myReportdialog.findViewById<EditText>(R.id.editText).text.trim().toString()
+            )
+        }
         mydialog.findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animationView)
-                .addAnimatorListener(object : Animator.AnimatorListener {
-                    override fun onAnimationStart(animation: Animator) {
-                        mydialog.findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animationView2).visibility =
-                            View.GONE
-                    }
-
-                    override fun onAnimationEnd(animation: Animator) {
-                        mydialog.findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animationView2).visibility =
-                            View.VISIBLE
-                        mydialog.findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animationView2)
-                            .playAnimation()
-                    }
-
-                    override fun onAnimationCancel(animation: Animator) {
-                    }
-
-                    override fun onAnimationRepeat(animation: Animator) {
-                    }
-                })
-            var rate: Int
-            fun reRateEmojie() {
-                mydialog.findViewById<ImageButton>(R.id.face10).visibility = View.VISIBLE
-                mydialog.findViewById<ImageButton>(R.id.face11).visibility = View.GONE
-                mydialog.findViewById<ImageButton>(R.id.face20).visibility = View.VISIBLE
-                mydialog.findViewById<ImageButton>(R.id.face21).visibility = View.GONE
-                mydialog.findViewById<ImageButton>(R.id.face30).visibility = View.VISIBLE
-                mydialog.findViewById<ImageButton>(R.id.face31).visibility = View.GONE
-                mydialog.findViewById<ImageButton>(R.id.face40).visibility = View.VISIBLE
-                mydialog.findViewById<ImageButton>(R.id.face41).visibility = View.GONE
-                mydialog.findViewById<ImageButton>(R.id.face50).visibility = View.VISIBLE
-                mydialog.findViewById<ImageButton>(R.id.face51).visibility = View.GONE
-                mydialog.findViewById<ImageView>(R.id.ratedImg).visibility = View.GONE
-                mydialog.findViewById<TextView>(R.id.rateEx).text = "كيف كانت تجربتك معنا ؟"
-            }
-
-            mYp = MediaPlayer.create(this, R.raw.click_sound)
-            fun shoEmojie(rate: Int) {
-
-                if (rate >= 1) {
-                    mydialog.findViewById<ImageButton>(R.id.face10).visibility = View.GONE
-                    mydialog.findViewById<ImageButton>(R.id.face11).visibility = View.VISIBLE
-                }
-                if (rate >= 2) {
-                    mydialog.findViewById<ImageButton>(R.id.face20).visibility = View.GONE
-                    mydialog.findViewById<ImageButton>(R.id.face21).visibility = View.VISIBLE
-                }
-                if (rate >= 3) {
-                    mydialog.findViewById<ImageButton>(R.id.face30).visibility = View.GONE
-                    mydialog.findViewById<ImageButton>(R.id.face31).visibility = View.VISIBLE
-                }
-                if (rate >= 4) {
-                    mydialog.findViewById<ImageButton>(R.id.face40).visibility = View.GONE
-                    mydialog.findViewById<ImageButton>(R.id.face41).visibility = View.VISIBLE
-                }
-                if (rate == 5) {
-                    mydialog.findViewById<ImageButton>(R.id.face50).visibility = View.GONE
-                    mydialog.findViewById<ImageButton>(R.id.face51).visibility = View.VISIBLE
-                }
-                if (rate == -1) {
-                    if (mydialog.findViewById<ImageButton>(R.id.face21).visibility == View.VISIBLE) {
-                        mydialog.findViewById<ImageButton>(R.id.face21).visibility = View.GONE
-                        mydialog.findViewById<ImageButton>(R.id.face20).visibility = View.VISIBLE
-                    }
-                    if (mydialog.findViewById<ImageButton>(R.id.face31).visibility == View.VISIBLE) {
-                        mydialog.findViewById<ImageButton>(R.id.face31).visibility = View.GONE
-                        mydialog.findViewById<ImageButton>(R.id.face30).visibility = View.VISIBLE
-
-                    }
-                    if (mydialog.findViewById<ImageButton>(R.id.face41).visibility == View.VISIBLE) {
-                        mydialog.findViewById<ImageButton>(R.id.face41).visibility = View.GONE
-                        mydialog.findViewById<ImageButton>(R.id.face40).visibility = View.VISIBLE
-                    }
-                    if (mydialog.findViewById<ImageButton>(R.id.face51).visibility == View.VISIBLE) {
-                        mydialog.findViewById<ImageButton>(R.id.face51).visibility = View.GONE
-                        mydialog.findViewById<ImageButton>(R.id.face50).visibility = View.VISIBLE
-                    }
-                }
-                if (rate == -2) {
-                    if (mydialog.findViewById<ImageButton>(R.id.face31).visibility == View.VISIBLE) {
-                        mydialog.findViewById<ImageButton>(R.id.face31).visibility = View.GONE
-                        mydialog.findViewById<ImageButton>(R.id.face30).visibility = View.VISIBLE
-                    }
-                    if (mydialog.findViewById<ImageButton>(R.id.face41).visibility == View.VISIBLE) {
-                        mydialog.findViewById<ImageButton>(R.id.face41).visibility = View.GONE
-                        mydialog.findViewById<ImageButton>(R.id.face40).visibility = View.VISIBLE
-                    }
-                    if (mydialog.findViewById<ImageButton>(R.id.face51).visibility == View.VISIBLE) {
-                        mydialog.findViewById<ImageButton>(R.id.face51).visibility = View.GONE
-                        mydialog.findViewById<ImageButton>(R.id.face50).visibility = View.VISIBLE
-                    }
-                }
-                if (rate == -3) {
-                    if (mydialog.findViewById<ImageButton>(R.id.face41).visibility == View.VISIBLE) {
-                        mydialog.findViewById<ImageButton>(R.id.face41).visibility = View.GONE
-                        mydialog.findViewById<ImageButton>(R.id.face40).visibility = View.VISIBLE
-
-                    }
-                    if (mydialog.findViewById<ImageButton>(R.id.face51).visibility == View.VISIBLE) {
-                        mydialog.findViewById<ImageButton>(R.id.face51).visibility = View.GONE
-                        mydialog.findViewById<ImageButton>(R.id.face50).visibility = View.VISIBLE
-
-                    }
-                }
-                if (rate == -4) {
-                    if (mydialog.findViewById<ImageButton>(R.id.face51).visibility == View.VISIBLE) {
-                        mydialog.findViewById<ImageButton>(R.id.face51).visibility = View.GONE
-                        mydialog.findViewById<ImageButton>(R.id.face50).visibility = View.VISIBLE
-
-                    }
+            .addAnimatorListener(object : Animator.AnimatorListener {
+                override fun onAnimationStart(animation: Animator) {
+                    mydialog.findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animationView2).visibility =
+                        View.GONE
                 }
 
-                mydialog.findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animationView2).visibility =
-                    View.GONE
-                mydialog.findViewById<ImageView>(R.id.ratedImg).visibility = View.VISIBLE
+                override fun onAnimationEnd(animation: Animator) {
+                    mydialog.findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animationView2).visibility =
+                        View.VISIBLE
+                    mydialog.findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animationView2)
+                        .playAnimation()
+                }
 
-                if (mydialog.findViewById<ImageButton>(R.id.face11).visibility == View.VISIBLE) {
-                    mydialog.findViewById<ImageView>(R.id.ratedImg)
-                        .setImageResource(R.drawable.face11)
-                    mydialog.findViewById<TextView>(R.id.rateEx).text = "ليست جيدة"
+                override fun onAnimationCancel(animation: Animator) {
                 }
-                if (mydialog.findViewById<ImageButton>(R.id.face21).visibility == View.VISIBLE) {
-                    mydialog.findViewById<ImageView>(R.id.ratedImg)
-                        .setImageResource(R.drawable.face21)
-                    mydialog.findViewById<TextView>(R.id.rateEx).text = "لا بأس بها"
-                }
-                if (mydialog.findViewById<ImageButton>(R.id.face31).visibility == View.VISIBLE) {
-                    mydialog.findViewById<ImageView>(R.id.ratedImg)
-                        .setImageResource(R.drawable.face31)
-                    mydialog.findViewById<TextView>(R.id.rateEx).text = "عادية"
-                }
-                if (mydialog.findViewById<ImageButton>(R.id.face41).visibility == View.VISIBLE) {
-                    mydialog.findViewById<ImageView>(R.id.ratedImg)
-                        .setImageResource(R.drawable.face41)
-                    mydialog.findViewById<TextView>(R.id.rateEx).text = "جيدة"
-                }
-                if (mydialog.findViewById<ImageButton>(R.id.face51).visibility == View.VISIBLE) {
-                    mydialog.findViewById<ImageView>(R.id.ratedImg)
-                        .setImageResource(R.drawable.face51)
-                    mydialog.findViewById<TextView>(R.id.rateEx).text = "رائعة"
 
+                override fun onAnimationRepeat(animation: Animator) {
                 }
-//        mp.stop()
-                mYp.start()
-                Handler().postDelayed({
-//            mydialog.findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animationview2).visibility = View.VISIBLE
-//            mydialog.findViewById<ImageView>(R.id.ratedImg).visibility = View.GONE
-                    if (isConnected() && mydialog.findViewById<ImageButton>(R.id.face31).visibility == View.VISIBLE || mydialog.findViewById<ImageButton>(
-                            R.id.face41
-                        ).visibility == View.VISIBLE || mydialog.findViewById<ImageButton>(R.id.face51).visibility == View.VISIBLE
-                    ) {
-                        val appPackageName =
-                            "com.medanis.fnecliscalcultricedumoyennestlicensemaster"
-                        try {
-                            startActivity(
-                                Intent(
-                                    Intent.ACTION_VIEW,
-                                    Uri.parse("market://details?id=$appPackageName")
-                                )
-                            )
-                        } catch (anfe: android.content.ActivityNotFoundException) {
-                            startActivity(
-                                Intent(
-                                    Intent.ACTION_VIEW,
-                                    Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")
-                                )
-                            )
-                        }
-                    }
-                    dialog.dismiss()
-                }, 2000)
+            })
 
-            }
-            mydialog.findViewById<ImageButton>(R.id.face10).setOnClickListener {
-                rate = 1
-                shoEmojie(rate)
-            }
-            mydialog.findViewById<ImageButton>(R.id.face20).setOnClickListener {
-                rate = 2
-                shoEmojie(rate)
-            }
-            mydialog.findViewById<ImageButton>(R.id.face30).setOnClickListener {
-                rate = 3
-                shoEmojie(rate)
-            }
-            mydialog.findViewById<ImageButton>(R.id.face40).setOnClickListener {
-                rate = 4
-                shoEmojie(rate)
-            }
-            mydialog.findViewById<ImageButton>(R.id.face50).setOnClickListener {
-                rate = 5
-                shoEmojie(rate)
-            }
-            mydialog.findViewById<ImageButton>(R.id.face11).setOnClickListener {
-                rate = -1
-                shoEmojie(rate)
-            }
-            mydialog.findViewById<ImageButton>(R.id.face21).setOnClickListener {
-                rate = -2
-                shoEmojie(rate)
-            }
-            mydialog.findViewById<ImageButton>(R.id.face31).setOnClickListener {
-                rate = -3
-                shoEmojie(rate)
-            }
-            mydialog.findViewById<ImageButton>(R.id.face41).setOnClickListener {
-                rate = -4
-                shoEmojie(rate)
-            }
-            mydialog.findViewById<ImageButton>(R.id.face51).setOnClickListener {
-                rate = -5
-                shoEmojie(rate)
-            }
-
+        var rate: Int = 0
+        mydialog.findViewById<ImageButton>(R.id.face10).setOnClickListener {
+            rate = 1
+            updateTheEmoji(this, rate, mydialog, dialog, reportAlertDialog)
+        }
+        mydialog.findViewById<ImageButton>(R.id.face20).setOnClickListener {
+            rate = 2
+            updateTheEmoji(this, rate, mydialog, dialog, reportAlertDialog)
+        }
+        mydialog.findViewById<ImageButton>(R.id.face30).setOnClickListener {
+            rate = 3
+            updateTheEmoji(this, rate, mydialog, dialog, reportAlertDialog)
+        }
+        mydialog.findViewById<ImageButton>(R.id.face40).setOnClickListener {
+            rate = 4
+            updateTheEmoji(this, rate, mydialog, dialog, reportAlertDialog)
+        }
+        mydialog.findViewById<ImageButton>(R.id.face50).setOnClickListener {
+            rate = 5
+            updateTheEmoji(this, rate, mydialog, dialog, reportAlertDialog)
+        }
+        mydialog.findViewById<ImageButton>(R.id.face11).setOnClickListener {
+            rate = -1
+            updateTheEmoji(this, rate, mydialog, dialog, reportAlertDialog)
+        }
+        mydialog.findViewById<ImageButton>(R.id.face21).setOnClickListener {
+            rate = -2
+            updateTheEmoji(this, rate, mydialog, dialog, reportAlertDialog)
+        }
+        mydialog.findViewById<ImageButton>(R.id.face31).setOnClickListener {
+            rate = -3
+            updateTheEmoji(this, rate, mydialog, dialog, reportAlertDialog)
+        }
+        mydialog.findViewById<ImageButton>(R.id.face41).setOnClickListener {
+            rate = -4
+            updateTheEmoji(this, rate, mydialog, dialog, reportAlertDialog)
+        }
+        mydialog.findViewById<ImageButton>(R.id.face51).setOnClickListener {
+            rate = -5
+            updateTheEmoji(this, rate, mydialog, dialog, reportAlertDialog)
+        }
 //        menuBtn.setOnClickListener {
 //            claculation()
 //            closeKeyboard()
@@ -4977,7 +4858,7 @@ class CalculatingPage : AppCompatActivity() {
 //                    findViewById<RecyclerView>(R.id.rvCalPage).visibility = View.VISIBLE
 //                    findViewById<RecyclerView>(R.id.rvCalPage).layoutParams = rvCAL
 ////                    showADS()
-////                    dialog.show()
+////                    alertDialog.show()
 ////                    mydialog.findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animationView).playAnimation()
 //
 //                },3800)
@@ -4986,35 +4867,85 @@ class CalculatingPage : AppCompatActivity() {
 //            oldMoy = moy
 //        }
 
-            findViewById<TextView>(R.id.calculatingTV).setOnClickListener {
-                Log.e("calculatingTV", "calculatingTV")
-                reRateEmojie()
-                claculation()
-                if (moy != oldMoy) {
-                    closeKeyboard()
-                }
-                if (moy >= 10.0 && findViewById<TextView>(R.id.calculatingTV).text != "..." && findViewById<TextView>(R.id.errorTextView).visibility == View.GONE && moy != oldMoy) {
-                    findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animation_view).playAnimation()
-                    mp = MediaPlayer.create(this, R.raw.max_success)
-                    mp.start()
-                    Handler().postDelayed({
-                        findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animation_view).visibility =
-                            View.GONE
-                        findViewById<RecyclerView>(R.id.rvCalPage).visibility = View.VISIBLE
-                        findViewById<RecyclerView>(R.id.rvCalPage).layoutParams = rvCAL
+
+        findViewById<TextView>(R.id.calculatingTV).setOnClickListener {
+
+            initEmoji(mydialog)
+
+            claculation()
+            if (moy != oldMoy) {
+                closeKeyboard()
+            }
+            if (moy >= 10.0 && findViewById<TextView>(R.id.calculatingTV).text != "..." && findViewById<TextView>(
+                    R.id.errorTextView
+                ).visibility == View.GONE && moy != oldMoy
+            ) {
+                findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animation_view).playAnimation()
+                mp = MediaPlayer.create(this, R.raw.max_success)
+                mp.start()
+                Handler().postDelayed({
+                    findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animation_view).visibility =
+                        View.GONE
+                    findViewById<RecyclerView>(R.id.rvCalPage).visibility = View.VISIBLE
+                    findViewById<RecyclerView>(R.id.rvCalPage).layoutParams = rvCAL
 //                    showADS()
-//                    dialog.show()
-//                    mydialog.findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animationView).playAnimation()
+                    alertDialog.show()
+                    mydialog.findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animationView)
+                        .playAnimation()
 
-                    }, 3800)
-                }
-
-
-                oldMoy = moy
-
+                }, 3800)
             }
 
 
+            oldMoy = moy
+
+        }
+
+        findViewById<TextView>(R.id.btn_Help).setOnClickListener {
+
+            reportAlertDialog.show()
+
+        }
+    }
+
+    private fun sendEmail(message: String) {
+
+        val recipientEmail = "oukebdane.ak@gmail.com"
+        val subject = "FNECLIS CALCULATOR - REPORTING ERROR"
+
+//        val intent = Intent(Intent.ACTION_SENDTO).apply {
+//            data = Uri.parse("mailto:$recipientEmail")
+//            putExtra(Intent.EXTRA_SUBJECT, subject)
+//            putExtra(Intent.EXTRA_TEXT, message)
+//        }
+//
+//        if (intent.resolveActivity(packageManager) != null) {
+//            startActivity(intent)
+//        }
+        /*ACTION_SEND action to launch an email client installed on your Android device.*/
+        val mIntent = Intent(Intent.ACTION_SEND)
+        /*To send an email you need to specify mailto: as URI using setData() method
+        and data type will be to text/plain using setType() method*/
+        mIntent.data = Uri.parse("mailto:")
+        mIntent.type = "text/plain"
+        // put recipient email in intent
+        /* recipient is put as array because you may wanna send email to multiple emails
+           so enter comma(,) separated emails, it will be stored in array*/
+        mIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(recipientEmail))
+        //put the Subject in the intent
+        mIntent.putExtra(Intent.EXTRA_SUBJECT, subject)
+        //put the message in the intent
+        mIntent.putExtra(Intent.EXTRA_TEXT, message)
+
+
+        try {
+            //start email intent
+            startActivity(Intent.createChooser(mIntent, "Choose Email Client..."))
+        } catch (e: Exception) {
+            //if any thing goes wrong for example no email client application or any exception
+            //get and show exception message
+            Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
+        }
 
     }
 }

@@ -65,16 +65,16 @@
                 tools:targetApi="o" />
 
             <Button
-                android:id="@+id/send"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/editText"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/agree_blue"
-                android:fontFamily="@font/vipraw"
-                android:text="@string/envoyer"
-                android:textColor="@android:color/white"
-                android:textSize="18sp" />
+                    android:id="@+id/send"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/editText"
+                    android:layout_marginTop="13dp"
+                    android:background="@drawable/agree_blue"
+                    android:fontFamily="@font/vipraw"
+                    android:text="@string/envoyer"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
