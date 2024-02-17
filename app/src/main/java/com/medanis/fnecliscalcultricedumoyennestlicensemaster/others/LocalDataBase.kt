@@ -13,16 +13,17 @@ fun convertModulesToJson(modules: MutableList<MODULE>): String {
     val gson = Gson()
     return gson.toJson(modules)
 }
+
 // Function to save MutableList<MODULE> in SharedPreferences
 fun saveModulesInSharedPreferences(
-    mContext : Context,
+    mContext: Context,
     mData: MutableList<MODULE>,
     LEVEL_YEAR_SEMSTER: String?,
     speciality: String?,
     dateTime: String?
 ) {
     val historyArray = getHistoryArray(mContext, "history_array") ?: emptyArray()
-    Log.e("eeeeeeee", historyArray.joinToString())
+
     var tSpeciality = speciality
     if (speciality == "null") {
         tSpeciality = ""
@@ -30,31 +31,43 @@ fun saveModulesInSharedPreferences(
 
     val newValue = "$LEVEL_YEAR_SEMSTER&&$tSpeciality&&$dateTime"
 
-    if (!isValueSavedBefore(mContext, newValue)) {
+    Log.e("historyArray", historyArray.contains(newValue).toString())
+
+    if (!historyArray.contains(newValue)) {
         val updatedArray = historyArray.toMutableList().apply { add(newValue) }.toTypedArray()
-//        Log.e("eeeeeeee myArray", updatedArray.joinToString())
+
         saveHistoryArray(mContext, "history_array", updatedArray)
     }
-
     val jsonString = convertModulesToJson(mData)
-    val sharedPreferences = mContext.getSharedPreferences("MODULE_PREFS_$LEVEL_YEAR_SEMSTER&&$tSpeciality&&$dateTime", Context.MODE_PRIVATE)
+    val sharedPreferences = mContext.getSharedPreferences(
+        "MODULE_PREFS_$LEVEL_YEAR_SEMSTER&&$tSpeciality&&$dateTime",
+        Context.MODE_PRIVATE
+    )
     val editor = sharedPreferences.edit()
     editor.putString("$LEVEL_YEAR_SEMSTER&&$tSpeciality&&$dateTime", jsonString)
     editor.apply()
+
 }
-private fun isValueSavedBefore(context: Context, key: String): Boolean {
-    val sharedPreferences = context.getSharedPreferences("history_array", Context.MODE_PRIVATE)
-    return sharedPreferences.contains(key)
-}
+
 //Function to retrieve MutableList<MODULE> from SharedPreferences
-fun getModulesFromSharedPreferences(context: Context,  LEVEL_YEAR_SEMSTER: String?, speciality: String?, dateTime: String?): MutableList<MODULE>? {
-    val sharedPreferences = context.getSharedPreferences("MODULE_PREFS_$LEVEL_YEAR_SEMSTER&&$speciality&&$dateTime", Context.MODE_PRIVATE)
-    val jsonString = sharedPreferences.getString("$LEVEL_YEAR_SEMSTER&&$speciality&&$dateTime", null)
+fun getModulesFromSharedPreferences(
+    context: Context,
+    LEVEL_YEAR_SEMSTER: String?,
+    speciality: String?,
+    dateTime: String?
+): MutableList<MODULE>? {
+    val sharedPreferences = context.getSharedPreferences(
+        "MODULE_PREFS_$LEVEL_YEAR_SEMSTER&&$speciality&&$dateTime",
+        Context.MODE_PRIVATE
+    )
+    val jsonString =
+        sharedPreferences.getString("$LEVEL_YEAR_SEMSTER&&$speciality&&$dateTime", null)
     jsonString?.let {
         return convertJsonToModules(it)
     }
     return null
 }
+
 //ion to convert JSON string to MutableList<MODULE>
 fun convertJsonToModules(jsonString: String): MutableList<MODULE> {
     val type: Type = object : TypeToken<MutableList<MODULE>>() {}.type

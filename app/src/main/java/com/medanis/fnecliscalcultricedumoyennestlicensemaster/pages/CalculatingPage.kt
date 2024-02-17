@@ -306,7 +306,7 @@ class CalculatingPage : AppCompatActivity() {
         var myModulesAdapter: MainRecylerViewAdapter? = null
 
         val isHistory = intent.getBooleanExtra("isHistory", false)
-        Log.e("isHistory", isHistory.toString())
+
         if (isHistory) {
 
             var mySPECIALITY = intent.getStringExtra("level Year semster")
@@ -315,7 +315,7 @@ class CalculatingPage : AppCompatActivity() {
             }
             val mySPECIALITY_old = mySPECIALITY
             val sPECIALITY = intent.getStringExtra("SpecialityNAME")?.split("&&")!!
-
+            Log.e("sPECIALITY", sPECIALITY.toString())
             mySPECIALITY = getLevelYearSemesterInArabic(mySPECIALITY)
 
             findViewById<TextView>(R.id.textViewSPECIALITY).text =
@@ -334,6 +334,24 @@ class CalculatingPage : AppCompatActivity() {
             myrv.layoutManager =
                 GridLayoutManager(this, 1)
             myrv.adapter = myModulesAdapter
+
+            val saveRetrieveButton = findViewById<Button>(R.id.saveRetrieveData)
+            saveRetrieveButton.setOnClickListener {
+                saveRetrieveButton.setBackgroundResource(R.drawable.icon_save_filled)
+                saveModulesInSharedPreferences(
+                    this,
+                    myModulesAdapter!!.mData,
+                    mySPECIALITY_old,
+                    sPECIALITY[0],
+                    sPECIALITY[1]
+                )
+
+                Toast.makeText(
+                    this,
+                    "Résultats modifiés avec succès",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         } else {
 
             wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager

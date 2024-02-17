@@ -339,8 +339,9 @@ class specialitiesList : AppCompatActivity() {
 
             var myHistoryDataList: MutableList<Spetialities> = ArrayList()
             var myHistoryDataList_old: MutableList<Spetialities> = ArrayList()
-            if (getHistoryArray(this, "history_array") != null) {
-                for (i in getHistoryArray(this, "history_array") as Array<String>) {
+            val historyArray = getHistoryArray(this, "history_array")
+            if (historyArray != null) {
+                for (i in historyArray as Array<String>) {
                     val mySPECIALITY_old = i.split("&&")[0]
                     val sPECIALITY_old = i.split("&&")[1]
                     val getCurrentDateTime = i.split("&&")[2]
@@ -353,6 +354,9 @@ class specialitiesList : AppCompatActivity() {
                         )
                     )
                 }
+            }
+            if (myHistoryDataList.isEmpty()){
+                findViewById<ImageView>(R.id.nothingfound).visibility = View.VISIBLE
             }
 
             val myrv = findViewById<RecyclerView>(R.id.recyclerView)
