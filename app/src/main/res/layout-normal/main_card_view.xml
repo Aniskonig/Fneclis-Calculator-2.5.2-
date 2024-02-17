@@ -28,6 +28,8 @@
                 android:paddingTop="6dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="6dp"
+                android:ellipsize="end"
+                android:maxLines="3"
                 android:textColor="@color/black"
                 android:textSize="@dimen/ModName_TXT"
                 tools:ignore="RtlHardcoded" />

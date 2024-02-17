@@ -29,6 +29,8 @@
                 android:paddingRight="10dp"
                 android:paddingBottom="6dp"
                 android:textColor="@color/black"
+                android:ellipsize="end"
+                android:maxLines="3"
                 android:textSize="@dimen/ModName_TXT"
                 tools:ignore="RtlHardcoded" />
 

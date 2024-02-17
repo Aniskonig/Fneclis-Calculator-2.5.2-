@@ -107,12 +107,13 @@ class specialitiesList : AppCompatActivity() {
             var abriName = ""
             val fullName = model.getspecialityFullName()!!.toLowerCase()
 
-            if (isHistory){
+            if (isHistory) {
                 abriName = CalculatingPage().getLevelYearSemesterInArabic(
                     model.getlevelYearSemester()
-                ) + " " +CalculatingPage().getMajorsNameInArabic(model.getabriNAME())!!.toLowerCase()
+                ) + " " + CalculatingPage().getMajorsNameInArabic(model.getabriNAME())!!
+                    .toLowerCase()
 
-            }else{
+            } else {
                 abriName = model.getabriNAME()!!.toLowerCase()
             }
 
@@ -310,7 +311,14 @@ class specialitiesList : AppCompatActivity() {
             )
             //  masterSPECIALITIES.add(Spetialities("TFM" , "Technologies de Fabrication Mécanique", mySPECIALITY))
             masterSPECIALITIES.add(Spetialities("VOA", "Voies et Ouvrages d'Art", mySPECIALITY))
-
+            masterSPECIALITIES.add(Spetialities("IB", "Instrumentation Biomédicale", mySPECIALITY))
+            masterSPECIALITIES.add(
+                Spetialities(
+                    "HSI",
+                    "Hygiène et sécurité industrielle",
+                    mySPECIALITY
+                )
+            )
 
             /**************
              *

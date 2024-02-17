@@ -165,6 +165,8 @@ class CalculatingPage : AppCompatActivity() {
             return "تخصّص تقنيات التصنيع الميكانيكية"
         } else if (major == "Voies et Ouvrages d'Art") {
             return "تخصّص طرقات ومنشآت فنية"
+        } else if (major == "Instrumentation Biomédicale") {
+            return "تخصّص الأجهزة البيوطبية"
         } else {
             return ""
         }
@@ -2336,6 +2338,36 @@ class CalculatingPage : AppCompatActivity() {
                         licenseMODULES.add(MODULE("Anglais technique et terminologie", 1.0))
                         licenseMODULES.add(MODULE("TP Programmation", 1.1))
                         licenseMODULES.add(MODULE("TP Logiciels Appliqués aux Routes", 1.1))
+                    } else if (sPECIALITY == "Instrumentation Biomédicale") {
+                        licenseMODULES.add(MODULE("Radiobiologie et radioprotection", 2.0))
+                        licenseMODULES.add(MODULE("Traitement avancé des signaux physiologiques", 2.0))
+                        licenseMODULES.add(MODULE("Fonctions principales de l’électronique", 2.0))
+                        licenseMODULES.add(MODULE("Circuits de conditionnement", 2.0))
+                        licenseMODULES.add(MODULE("Technologies des biomatériaux pour prothèses", 2.1))
+                        licenseMODULES.add(MODULE("Electronique de puissance", 1.3))
+                        licenseMODULES.add(MODULE("TP Fonctions de l’électronique", 1.1))
+                        licenseMODULES.add(MODULE("TP Circuits de conditionnement/\n" +
+                                "TP Electronique de puissance", 1.1))
+                        licenseMODULES.add(MODULE("TP Traitement avancé des signaux /\n" +
+                                "TP Radiobiologie et radioprotection", 1.1))
+                        licenseMODULES.add(MODULE("Matière au choix :( module du coeff = 1 )", 1.0))
+                        licenseMODULES.add(MODULE("Matière au choix :( module du coeff = 1 )", 1.0))
+                        licenseMODULES.add(MODULE("Anglais technique et terminologie", 1.0))
+
+                    } else if (sPECIALITY == "Hygiène et sécurité industrielle") {
+                        licenseMODULES.add(MODULE("Risques physiques industriels", 3.0))
+                        licenseMODULES.add(MODULE("Outils math utilisés en Sureté de Fonctionnement", 2.0))
+                        licenseMODULES.add(MODULE("Métho numé et matric d’analyse du risque", 2.0))
+                        licenseMODULES.add(MODULE("Mesure et maitrise du risque", 2.0))
+                        licenseMODULES.add(MODULE("Programmation MATLAB", 2.0))
+
+                        licenseMODULES.add(MODULE("TP Dangers vibra/ pressions", 1.1))
+                        licenseMODULES.add(MODULE("TP Dangers Electriques/Mécaniques", 1.1))
+                        licenseMODULES.add(MODULE("TP Levage et manutention", 1.1))
+                        licenseMODULES.add(MODULE("Prévention et détection du risque incendie", 1.0))
+                        licenseMODULES.add(MODULE("Risques majeurs", 1.0))
+                        licenseMODULES.add(MODULE("Anglais technique et terminologie", 1.0))
+
                     }
                     /***
                      *
@@ -3364,6 +3396,33 @@ class CalculatingPage : AppCompatActivity() {
                                 1.1
                             )
                         )
+                    } else if (sPECIALITY == "Instrumentation Biomédicale") {
+                        licenseMODULES.add(MODULE("Traitement de l’image médicale", 3.0))
+                        licenseMODULES.add(MODULE("Dispositifs spéciaux pour l’imagerie médicale", 2.0))
+                        licenseMODULES.add(MODULE("Rayonnements non ionisants", 2.0))
+                        licenseMODULES.add(MODULE("Systèmes à microcontrôleurs", 2.0))
+                        licenseMODULES.add(MODULE("Langage de programmation", 2.1))
+                        licenseMODULES.add(MODULE("TP Traitement de l’image médicale", 1.1))
+                        licenseMODULES.add(MODULE("TP Dispositifs spéciaux /TP\n" +
+                                "Rayonnements non ionisants", 1.1))
+                        licenseMODULES.add(MODULE("TP Systèmes à microcontrôleurs", 1.1))
+                        licenseMODULES.add(MODULE("Matière au choix :( module du coeff = 1 )", 1.0))
+                        licenseMODULES.add(MODULE("Matière au choix :( module du coeff = 1 )", 1.0))
+                        licenseMODULES.add(MODULE("Respect des normes et des règles d’éthique et d’intégrité", 1.0))
+
+                    } else if (sPECIALITY == "Hygiène et sécurité industrielle") {
+                        licenseMODULES.add(MODULE("Analyse du cycle de vie et écoconception", 3.0))
+                        licenseMODULES.add(MODULE("Sécurité des procédés : risques mécaniques/électriques", 2.0))
+                        licenseMODULES.add(MODULE("Sûreté de fonctionnement des systèmes 1", 2.0))
+                        licenseMODULES.add(MODULE("Diagnostic des défaillances des systèmes industriels", 2.0))
+                        licenseMODULES.add(MODULE("Logiciels informatiques dédiés à la sécurité industrielle", 2.1))
+                        licenseMODULES.add(MODULE("Management du risque", 1.0))
+                        licenseMODULES.add(MODULE("Retour d’expérience industrielle et veille informationnelle", 1.0))
+                        licenseMODULES.add(MODULE("Système d’information en HSI", 1.0))
+                        licenseMODULES.add(MODULE("Matière au choix :( module du coeff = 1 )", 1.0))
+                        licenseMODULES.add(MODULE("Matière au choix :( module du coeff = 1 )", 1.0))
+                        licenseMODULES.add(MODULE("Ethique, déontologie et propriété industrielle", 1.0))
+
                     }
                     /***
                      *
@@ -4428,6 +4487,34 @@ class CalculatingPage : AppCompatActivity() {
                         )
                         licenseMODULES.add(MODULE("Pathologie et réhabilitation des OA", 1.0))
                         licenseMODULES.add(MODULE("Organisation et visites de chantiers", 1.1))
+
+                    } else if (sPECIALITY == "Instrumentation Biomédicale") {
+                        licenseMODULES.add(MODULE("Instrumentation pour l’exploration fonctionnelle", 2.0))
+                        licenseMODULES.add(MODULE("Instrumentation de l’imagerie médicale", 2.0))
+                        licenseMODULES.add(MODULE("Biocapteurs", 2.0))
+                        licenseMODULES.add(MODULE("Systèmes embarqués biomédicaux", 2.0))
+                        licenseMODULES.add(MODULE("Gestion de projets pour les systèmes de santé", 2.1))
+                        licenseMODULES.add(MODULE("Modélisation et simulation des systèmes biomédicaux", 1.0))
+                        licenseMODULES.add(MODULE("TP Instrumentation / TP Biocapteurs", 1.1))
+                        licenseMODULES.add(MODULE("TP Systèmes embarqués biomédicaux", 1.1))
+                        licenseMODULES.add(MODULE("TP Simulation des systèmes biomédicaux", 1.1))
+                        licenseMODULES.add(MODULE("Matière au choix :( module du coeff = 1 )", 1.0))
+                        licenseMODULES.add(MODULE("Matière au choix :( module du coeff = 1 )", 1.0))
+                        licenseMODULES.add(MODULE("Recherche documentaire et conception de mémoire", 1.0))
+
+                    } else if (sPECIALITY == "Hygiène et sécurité industrielle") {
+                        licenseMODULES.add(MODULE("Maîtrise statistique des processus", 3.0))
+                        licenseMODULES.add(MODULE("Sûreté de fonctionnement des systèmes 2", 2.0))
+                        licenseMODULES.add(MODULE("Outils d’aide à la décision", 2.0))
+                        licenseMODULES.add(MODULE("Sécurité fonctionnelle", 2.0))
+                        licenseMODULES.add(MODULE("Méthodes intégrées d’analyse des risques", 2.0))
+                        licenseMODULES.add(MODULE("Culture de sécurité", 1.0))
+                        licenseMODULES.add(MODULE("Maintenance industrielle", 1.0))
+                        licenseMODULES.add(MODULE("Audit, Certification, Accréditation et Mise en conformité des installations et sites industriels", 1.0))
+                        licenseMODULES.add(MODULE("Matière au choix :( module du coeff = 1 )", 1.0))
+                        licenseMODULES.add(MODULE("Matière au choix :( module du coeff = 1 )", 1.0))
+                        licenseMODULES.add(MODULE("Recherche documentaire et conception de mémoire", 1.0))
+
                     }
                     /***
                      *
