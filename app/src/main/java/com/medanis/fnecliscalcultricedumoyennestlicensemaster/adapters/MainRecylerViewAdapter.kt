@@ -98,13 +98,17 @@ class MainRecylerViewAdapter(private val mContext: Context, var mData: MutableLi
 
 
                 if (RATE == 3.0 || (RATE == 2.0 ) || RATE == 1.3  || RATE == 3.4 || RATE == 5.0 || RATE==4.1 || RATE == 6.1){
+                    // Cours et TD
                     TPinvisible(holder)
                 }else if (RATE == 2.1 || RATE == 1.2 || RATE == 3.1 || RATE==4.2){
+                    // Cours et TP
                     TDinvisible(holder)
                 }else if (RATE == 2.2  || (RATE == 1.0)){
+                    // Cours
                     TDinvisible(holder)
                     TPinvisible(holder)
                 }else if (RATE == 1.1 || RATE == 2.3 || RATE == 3.2 || RATE==5.1){
+                    // TP
                     COURSinvisible(holder)
                     TDinvisible(holder)
                 }

@@ -312,6 +312,7 @@ class specialitiesList : AppCompatActivity() {
             //  masterSPECIALITIES.add(Spetialities("TFM" , "Technologies de Fabrication Mécanique", mySPECIALITY))
             masterSPECIALITIES.add(Spetialities("VOA", "Voies et Ouvrages d'Art", mySPECIALITY))
             masterSPECIALITIES.add(Spetialities("IB", "Instrumentation Biomédicale", mySPECIALITY))
+            masterSPECIALITIES.add(Spetialities("IP", "Industries Pétrochimiques", mySPECIALITY))
             masterSPECIALITIES.add(
                 Spetialities(
                     "HSI",
@@ -355,7 +356,7 @@ class specialitiesList : AppCompatActivity() {
                     )
                 }
             }
-            if (myHistoryDataList.isEmpty()){
+            if (myHistoryDataList.isEmpty()) {
                 findViewById<ImageView>(R.id.nothingfound).visibility = View.VISIBLE
             }
 
