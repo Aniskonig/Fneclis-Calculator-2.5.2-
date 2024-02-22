@@ -5186,10 +5186,8 @@ class CalculatingPage : AppCompatActivity() {
 
         }
 
-        findViewById<TextView>(R.id.btn_Help).setOnClickListener {
-
+        findViewById<Button>(R.id.btn_Help).setOnClickListener {
             reportAlertDialog.show()
-
         }
     }
 
