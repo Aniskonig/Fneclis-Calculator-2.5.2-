@@ -381,8 +381,8 @@ class CalculatingPage : AppCompatActivity() {
             val fneclisADS = findViewById<ImageButton>(R.id.fneclisADS)
             val timer = findViewById<TextView>(R.id.timer)
 
-            prepareAd()
-            showADS()
+//            prepareAd()
+//            showADS()
 
             fun appInstalledOrNot(uri: String): Boolean {
                 val pm: PackageManager = packageManager
@@ -443,19 +443,19 @@ class CalculatingPage : AppCompatActivity() {
             mydialogADS.findViewById<ImageButton>(R.id.closeAds).setOnClickListener {
                 dialogADS.dismiss()
             }
-            val adRequestADS = AdRequest.Builder()
-                .setRequestAgent("android_studio:ad_template")
-                .build()
-            mydialogADS.findViewById<com.google.android.gms.ads.AdView>(R.id.dialogAdView)
-                .loadAd(adRequestADS)
-            mydialogADS.findViewById<com.google.android.gms.ads.AdView>(R.id.dialogAdView).adListener =
-                object : AdListener() {
-                    override fun onAdLoaded() {
-                        if (!dialog.isShowing) {
-                            dialogADS.show()
-                        }
-                    }
-                }
+//            val adRequestADS = AdRequest.Builder()
+//                .setRequestAgent("android_studio:ad_template")
+//                .build()
+//            mydialogADS.findViewById<com.google.android.gms.ads.AdView>(R.id.dialogAdView)
+//                .loadAd(adRequestADS)
+//            mydialogADS.findViewById<com.google.android.gms.ads.AdView>(R.id.dialogAdView).adListener =
+//                object : AdListener() {
+//                    override fun onAdLoaded() {
+//                        if (!dialog.isShowing) {
+//                            dialogADS.show()
+//                        }
+//                    }
+//                }
             fneclisADS.setOnClickListener {
                 val appPackageName = "com.medanis.fneclis"
 
@@ -474,7 +474,7 @@ class CalculatingPage : AppCompatActivity() {
                         )
                     )
                 }
-                showADS()
+//                showADS()
             }
 
 
@@ -1835,22 +1835,53 @@ class CalculatingPage : AppCompatActivity() {
                         licenseMODULES.add(MODULE("Statistiques appliquées", 1.0))
                         licenseMODULES.add(MODULE("Anglais technique et terminologie", 1.0))
                     } else if (sPECIALITY == "Génie Chimique") {
+//                        licenseMODULES.add(
+//                            MODULE(
+//                                "Opérations unitaires I (Absorption-Strippage_ Extraction- mélangeage)",
+//                                3.0
+//                            )
+//                        )
+//                        licenseMODULES.add(
+//                            MODULE(
+//                                "Génie de la réaction I : réacteurs non-idéaux et bioréacteurs",
+//                                2.0
+//                            )
+//                        )
+//                        licenseMODULES.add(MODULE("Thermodynamique technique", 2.0))
+//                        licenseMODULES.add(
+//                            MODULE(
+//                                "Transfert thermique et Echangeurs de chaleur",
+//                                2.0
+//                            )
+//                        )
+//                        licenseMODULES.add(MODULE("Simulateurs en Génie des procédés", 2.1))
+//                        licenseMODULES.add(MODULE("Anglais technique et terminologie", 1.0))
+//                        licenseMODULES.add(MODULE("Matière au choix :( module du coeff = 1 )", 1.0))
+//                        licenseMODULES.add(MODULE("Matière au choix :( module du coeff = 1 )", 1.0))
+//                        licenseMODULES.add(MODULE("TP Opérations unitaires I", 1.1))
+//                        licenseMODULES.add(MODULE("TP Génie de la réaction I", 1.1))
+//                        licenseMODULES.add(
+//                            MODULE(
+//                                "TP Transfert thermique et Echangeurs de chaleur",
+//                                1.1
+//                            )
+//                        )
                         licenseMODULES.add(
                             MODULE(
-                                "Opérations unitaires I (Absorption-Strippage_ Extraction- mélangeage)",
+                                "Opérations unitaires I (distillation, Extraction sol-liq- mélangeage)",
                                 3.0
                             )
                         )
                         licenseMODULES.add(
                             MODULE(
-                                "Génie de la réaction I : réacteurs non-idéaux et bioréacteurs",
+                                "Milieux poreux et dispersés",
                                 2.0
                             )
                         )
-                        licenseMODULES.add(MODULE("Thermodynamique technique", 2.0))
+                        licenseMODULES.add(MODULE("Thermodynamique appliquée", 2.0))
                         licenseMODULES.add(
                             MODULE(
-                                "Transfert thermique et Echangeurs de chaleur",
+                                "Echangeurs de chaleur",
                                 2.0
                             )
                         )
@@ -1859,10 +1890,10 @@ class CalculatingPage : AppCompatActivity() {
                         licenseMODULES.add(MODULE("Matière au choix :( module du coeff = 1 )", 1.0))
                         licenseMODULES.add(MODULE("Matière au choix :( module du coeff = 1 )", 1.0))
                         licenseMODULES.add(MODULE("TP Opérations unitaires I", 1.1))
-                        licenseMODULES.add(MODULE("TP Génie de la réaction I", 1.1))
+                        licenseMODULES.add(MODULE("TP Milieux poreux et dispersés", 1.1))
                         licenseMODULES.add(
                             MODULE(
-                                "TP Transfert thermique et Echangeurs de chaleur",
+                                "TP Echangeurs de chaleur",
                                 1.1
                             )
                         )
@@ -2811,29 +2842,44 @@ class CalculatingPage : AppCompatActivity() {
                                 2.0
                             )
                         )
+//                        licenseMODULES.add(
+//                            MODULE(
+//                                "Génie de la réaction II : réacteurs poly-phasiques",
+//                                2.0
+//                            )
+//                        )
                         licenseMODULES.add(
                             MODULE(
-                                "Génie de la réaction II : réacteurs poly-phasiques",
+                                "Génie de la réaction I : réacteurs non idéaux et bioréacteurs",
                                 2.0
                             )
                         )
                         licenseMODULES.add(MODULE("Fours et Chaudières", 2.0))
-                        licenseMODULES.add(MODULE("Régulation et commande des procédés", 2.0))
+//                        licenseMODULES.add(MODULE("Régulation et commande des procédés", 2.0))
                         licenseMODULES.add(MODULE("Analyse Numérique", 2.0))
+//                        licenseMODULES.add(
+//                            MODULE(
+//                                "Ethique, déontologie et propriété intellectuelle",
+//                                1.0
+//                            )
+//                        )
                         licenseMODULES.add(
                             MODULE(
-                                "Ethique, déontologie et propriété intellectuelle",
+                                "Respect des normes et des règles d’éthique et d’intégrité.",
                                 1.0
                             )
                         )
                         licenseMODULES.add(MODULE("Matière au choix :( module du coeff = 1 )", 1.0))
                         licenseMODULES.add(MODULE("Matière au choix :( module du coeff = 1 )", 1.0))
-                        licenseMODULES.add(
-                            MODULE(
-                                "TP Opérations unitaires 2, Procédés d’adsorption et séparation Membranaire",
-                                1.1
-                            )
-                        )
+//                        licenseMODULES.add(
+//                            MODULE(
+//                                "TP Opérations unitaires 2, Procédés d’adsorption et séparation Membranaire",
+//                                1.1
+//                            )
+//                        )
+                        licenseMODULES.add(MODULE("TP Opérations unitaires 2", 1.1))
+                        licenseMODULES.add(MODULE("TP Génie de la réaction", 1.1))
+                        licenseMODULES.add(MODULE("TP Procédés d’adsorption et séparation Membranaire", 1.1))
                     } else if (sPECIALITY == "Génie Climatique") {
                         licenseMODULES.add(MODULE("Production de Froid et Séchage", 3.0))
                         licenseMODULES.add(
@@ -3933,11 +3979,12 @@ class CalculatingPage : AppCompatActivity() {
                         licenseMODULES.add(MODULE("Traitement des Déchets et Valorisation", 1.0))
                         licenseMODULES.add(MODULE("Planification et politique alimentaire", 1.0))
                     } else if (sPECIALITY == "Génie Chimique") {
-                        licenseMODULES.add(MODULE("Distillation", 2.0))
-                        licenseMODULES.add(MODULE("Raffinage et pétrochimie", 2.0))
-                        licenseMODULES.add(MODULE("Milieux poreux et dispersés", 2.0))
-                        licenseMODULES.add(MODULE("Optimisation et Modélisation des procédés", 2.0))
+                        licenseMODULES.add(MODULE("Fondements de la modélisation en génie des procédés", 2.0))
+                        licenseMODULES.add(MODULE("Procédés de Raffinage et de Pétrochimie", 2.0))
+                        licenseMODULES.add(MODULE("Méthodes d’optimisation en génie des procédés", 2.0))
+                        licenseMODULES.add(MODULE("Réacteurs polyphasiques", 2.0))
                         licenseMODULES.add(MODULE("Plan d’expériences", 2.1))
+                        licenseMODULES.add(MODULE("Régulation et commande des procédés", 2.0))
                         licenseMODULES.add(MODULE("Intensification des procédés", 1.0))
                         licenseMODULES.add(
                             MODULE(
@@ -3947,9 +3994,7 @@ class CalculatingPage : AppCompatActivity() {
                         )
                         licenseMODULES.add(MODULE("Matière au choix :( module du coeff = 1 )", 1.0))
                         licenseMODULES.add(MODULE("Matière au choix :( module du coeff = 1 )", 1.0))
-                        licenseMODULES.add(MODULE("TP Distillation", 1.1))
                         licenseMODULES.add(MODULE("TP Raffinage et pétrochimie", 1.1))
-                        licenseMODULES.add(MODULE("TP Milieux poreux et dispersés", 1.1))
                     } else if (sPECIALITY == "Génie Climatique") {
                         licenseMODULES.add(MODULE("Echangeurs de Chaleur", 2.0))
                         licenseMODULES.add(

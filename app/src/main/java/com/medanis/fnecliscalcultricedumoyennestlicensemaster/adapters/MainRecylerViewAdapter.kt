@@ -112,6 +112,7 @@ class MainRecylerViewAdapter(private val mContext: Context, var mData: MutableLi
                     COURSinvisible(holder)
                     TDinvisible(holder)
                 }
+                // 2.4 = 2 = COURS + TD + TP
                 val cour = mData[position].getischangedCourseMARK().toString()
                 val td = mData[position].getischangedTdMARK().toString()
                 val tp = mData[position].getischangedTpMARK().toString()
