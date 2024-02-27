@@ -3979,59 +3979,71 @@ class CalculatingPage : AppCompatActivity() {
                         licenseMODULES.add(MODULE("Traitement des Déchets et Valorisation", 1.0))
                         licenseMODULES.add(MODULE("Planification et politique alimentaire", 1.0))
                     } else if (sPECIALITY == "Génie Chimique") {
-                        licenseMODULES.add(MODULE("Fondements de la modélisation en génie des procédés", 2.0))
-                        licenseMODULES.add(MODULE("Procédés de Raffinage et de Pétrochimie", 2.0))
-                        licenseMODULES.add(MODULE("Méthodes d’optimisation en génie des procédés", 2.0))
-                        licenseMODULES.add(MODULE("Réacteurs polyphasiques", 2.0))
+//                        licenseMODULES.add(MODULE("Fondements de la modélisation en génie des procédés", 2.0))
+//                        licenseMODULES.add(MODULE("Procédés de Raffinage et de Pétrochimie", 2.0))
+//                        licenseMODULES.add(MODULE("Méthodes d’optimisation en génie des procédés", 2.0))
+//                        licenseMODULES.add(MODULE("Réacteurs polyphasiques", 2.0))
+//                        licenseMODULES.add(MODULE("Plan d’expériences", 2.1))
+//                        licenseMODULES.add(MODULE("Régulation et commande des procédés", 2.0))
+//                        licenseMODULES.add(MODULE("Intensification des procédés", 1.0))
+//                        licenseMODULES.add(
+//                            MODULE(
+//                                "Recherche documentaire et conception de mémoire",
+//                                1.0
+//                            )
+//                        )
+//                        licenseMODULES.add(MODULE("Matière au choix :( module du coeff = 1 )", 1.0))
+//                        licenseMODULES.add(MODULE("Matière au choix :( module du coeff = 1 )", 1.0))
+//                        licenseMODULES.add(MODULE("TP Raffinage et pétrochimie", 1.1))
+//                    } else if (sPECIALITY == "Génie Climatique") {
+//                        licenseMODULES.add(MODULE("Echangeurs de Chaleur", 2.0))
+//                        licenseMODULES.add(
+//                            MODULE(
+//                                "Ventilation Industrielle et Protection de l’Environnement",
+//                                2.0
+//                            )
+//                        )
+//                        licenseMODULES.add(
+//                            MODULE(
+//                                "Commande et Automatisation des Installations énergétiques",
+//                                2.0
+//                            )
+//                        )
+//                        licenseMODULES.add(MODULE("Procédés cryogéniques", 2.0))
+//                        licenseMODULES.add(MODULE("Installation de Froid", 2.1))
+//                        licenseMODULES.add(MODULE("Recherche opérationnelle", 2.1))
+//                        licenseMODULES.add(
+//                            MODULE(
+//                                "Bureau d’étude climatisation et froid industriel",
+//                                1.0
+//                            )
+//                        )
+//                        licenseMODULES.add(
+//                            MODULE(
+//                                "Recherche documentaire et conception de mémoire",
+//                                1.0
+//                            )
+//                        )
+//                        licenseMODULES.add(MODULE("Matière au choix :( module du coeff = 1 )", 1.0))
+//                        licenseMODULES.add(MODULE("Matière au choix :( module du coeff = 1 )", 1.0))
+//                        licenseMODULES.add(
+//                            MODULE(
+//                                "TP Dépannage des installations frigorifiques & climatiques",
+//                                1.1
+//                            )
+//                        )
+                        licenseMODULES.add(MODULE("Distillation", 2.0))
+                        licenseMODULES.add(MODULE("Raffinage et pétrochimie", 2.0))
+                        licenseMODULES.add(MODULE("Milieux poreux et dispersés", 2.0))
+                        licenseMODULES.add(MODULE("Optimisation et Modélisation des procédés", 2.0))
                         licenseMODULES.add(MODULE("Plan d’expériences", 2.1))
-                        licenseMODULES.add(MODULE("Régulation et commande des procédés", 2.0))
                         licenseMODULES.add(MODULE("Intensification des procédés", 1.0))
-                        licenseMODULES.add(
-                            MODULE(
-                                "Recherche documentaire et conception de mémoire",
-                                1.0
-                            )
-                        )
+                        licenseMODULES.add(MODULE("Recherche documentaire et conception de mémoire", 1.0))
                         licenseMODULES.add(MODULE("Matière au choix :( module du coeff = 1 )", 1.0))
                         licenseMODULES.add(MODULE("Matière au choix :( module du coeff = 1 )", 1.0))
+                        licenseMODULES.add(MODULE("TP Distillation", 1.1))
                         licenseMODULES.add(MODULE("TP Raffinage et pétrochimie", 1.1))
-                    } else if (sPECIALITY == "Génie Climatique") {
-                        licenseMODULES.add(MODULE("Echangeurs de Chaleur", 2.0))
-                        licenseMODULES.add(
-                            MODULE(
-                                "Ventilation Industrielle et Protection de l’Environnement",
-                                2.0
-                            )
-                        )
-                        licenseMODULES.add(
-                            MODULE(
-                                "Commande et Automatisation des Installations énergétiques",
-                                2.0
-                            )
-                        )
-                        licenseMODULES.add(MODULE("Procédés cryogéniques", 2.0))
-                        licenseMODULES.add(MODULE("Installation de Froid", 2.1))
-                        licenseMODULES.add(MODULE("Recherche opérationnelle", 2.1))
-                        licenseMODULES.add(
-                            MODULE(
-                                "Bureau d’étude climatisation et froid industriel",
-                                1.0
-                            )
-                        )
-                        licenseMODULES.add(
-                            MODULE(
-                                "Recherche documentaire et conception de mémoire",
-                                1.0
-                            )
-                        )
-                        licenseMODULES.add(MODULE("Matière au choix :( module du coeff = 1 )", 1.0))
-                        licenseMODULES.add(MODULE("Matière au choix :( module du coeff = 1 )", 1.0))
-                        licenseMODULES.add(
-                            MODULE(
-                                "TP Dépannage des installations frigorifiques & climatiques",
-                                1.1
-                            )
-                        )
+                        licenseMODULES.add(MODULE("TP Milieux poreux et dispersés", 1.1))
                     } else if (sPECIALITY == "Génie de l’Environnement") {
                         licenseMODULES.add(MODULE("Bioprocédés", 3.0))
                         licenseMODULES.add(MODULE("Procédés membranaires et dessalement", 2.0))
