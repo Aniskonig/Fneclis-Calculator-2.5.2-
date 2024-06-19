@@ -12,11 +12,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import com.medanis.fnecliscalcultricedumoyennestlicensemaster.R
+import retrofit2.Response
+import retrofit2.http.Body
+import retrofit2.http.Headers
+import retrofit2.http.POST
 
 class Others {
 
 
 }
+
 private fun isConnected(context: Context): Boolean {
     val cnxManager: ConnectivityManager =
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

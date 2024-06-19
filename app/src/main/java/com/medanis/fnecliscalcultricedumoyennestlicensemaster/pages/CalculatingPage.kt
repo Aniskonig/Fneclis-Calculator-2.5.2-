@@ -4,48 +4,52 @@ import android.animation.Animator
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.media.MediaPlayer
 import android.net.ConnectivityManager
+import android.net.Uri
 import android.net.wifi.WifiManager
-import android.os.Build
+import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.ads.AdListener
+import com.android.volley.AuthFailureError
+import com.android.volley.DefaultRetryPolicy
+import com.android.volley.NetworkResponse
+import com.android.volley.RetryPolicy
+import com.android.volley.toolbox.JsonObjectRequest
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
-import com.medanis.fnecliscalcultricedumoyennestlicensemaster.models.MODULE
 import com.medanis.fnecliscalcultricedumoyennestlicensemaster.R
 import com.medanis.fnecliscalcultricedumoyennestlicensemaster.adapters.MainRecylerViewAdapter
+import com.medanis.fnecliscalcultricedumoyennestlicensemaster.models.MODULE
 import com.medanis.fnecliscalcultricedumoyennestlicensemaster.others.getModulesFromSharedPreferences
 import com.medanis.fnecliscalcultricedumoyennestlicensemaster.others.initEmoji
 import com.medanis.fnecliscalcultricedumoyennestlicensemaster.others.saveModulesInSharedPreferences
 import com.medanis.fnecliscalcultricedumoyennestlicensemaster.others.updateTheEmoji
+import kotlinx.coroutines.*
+import okhttp3.Response
+import org.json.JSONException
+import org.json.JSONObject
 import java.math.RoundingMode
 import java.text.DecimalFormat
-import java.util.concurrent.ScheduledExecutorService
-import java.util.Date
 import java.text.SimpleDateFormat
-import android.content.Intent
-import android.graphics.Bitmap
-import android.net.Uri
-import android.os.Bundle
-import android.provider.MediaStore
-import android.text.TextUtils
-import android.widget.Button
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import java.util.Date
+import java.util.concurrent.ScheduledExecutorService
+import javax.xml.transform.ErrorListener
+
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class CalculatingPage : AppCompatActivity() {
@@ -294,11 +298,7 @@ class CalculatingPage : AppCompatActivity() {
         findViewById<TextView>(R.id.errorTextView).visibility = View.GONE
     }
 
-    //    @BindView(R.id.tapBarMenu)
-//    internal var tapBarMenu: TapBarMenu = tapBarMenu
-    @RequiresApi(Build.VERSION_CODES.GINGERBREAD)
-    @SuppressLint("ResourceAsColor", "SetTextI18n", "InflateParams", "CutPasteId")
-//    private lateinit var dialogADS: Dialog
+    private val accessToken = "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"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -2879,7 +2879,12 @@ class CalculatingPage : AppCompatActivity() {
 //                        )
                         licenseMODULES.add(MODULE("TP Opérations unitaires 2", 1.1))
                         licenseMODULES.add(MODULE("TP Génie de la réaction", 1.1))
-                        licenseMODULES.add(MODULE("TP Procédés d’adsorption et séparation Membranaire", 1.1))
+                        licenseMODULES.add(
+                            MODULE(
+                                "TP Procédés d’adsorption et séparation Membranaire",
+                                1.1
+                            )
+                        )
                     } else if (sPECIALITY == "Génie Climatique") {
                         licenseMODULES.add(MODULE("Production de Froid et Séchage", 3.0))
                         licenseMODULES.add(
@@ -4038,7 +4043,12 @@ class CalculatingPage : AppCompatActivity() {
                         licenseMODULES.add(MODULE("Optimisation et Modélisation des procédés", 2.0))
                         licenseMODULES.add(MODULE("Plan d’expériences", 2.1))
                         licenseMODULES.add(MODULE("Intensification des procédés", 1.0))
-                        licenseMODULES.add(MODULE("Recherche documentaire et conception de mémoire", 1.0))
+                        licenseMODULES.add(
+                            MODULE(
+                                "Recherche documentaire et conception de mémoire",
+                                1.0
+                            )
+                        )
                         licenseMODULES.add(MODULE("Matière au choix :( module du coeff = 1 )", 1.0))
                         licenseMODULES.add(MODULE("Matière au choix :( module du coeff = 1 )", 1.0))
                         licenseMODULES.add(MODULE("TP Distillation", 1.1))
