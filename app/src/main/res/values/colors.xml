@@ -95,6 +95,7 @@
 <color name="trans">#00000000</color>
 <color name="light_green_400">#9CCC65</color>
 <color name="blue_400">#42A5F5</color>
+<color name="blue_100">#4D42A5F5</color>
 <color name="orange_500">#FF9800</color>
 
 <color name="material_grey_500">#9E9E9E</color>

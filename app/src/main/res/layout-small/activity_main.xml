@@ -91,6 +91,17 @@
                         android:textSize="@dimen/licenseButton_TxtSize"
                         tools:cardCornerRadius="4dp" />
 
+
+                <TextView
+                        android:id="@+id/addSpecialityTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="false"
+                        android:layout_marginBottom="20dp"
+                        android:fontFamily="@font/monadi"
+                        android:text="@string/addSpeciality" />
                 <RelativeLayout
                         android:id="@+id/licenseYearsLinearLayout"
                         android:layout_width="wrap_content"

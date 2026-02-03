@@ -56,4 +56,27 @@
         question
     </string>
     <string name="les_r_sultats_ont_t_supprim_s">Les résultats ont été supprimés..Vous devrez peut-être actualiser la page pour voir les résultats</string>
+<!--    <string name="addSpeciality">هل تخصصك غير موجود ؟ أضف تخصصك من هنا</string>-->
+    <string name="addSpeciality">Votre spécialisation n\'est pas listée? Ajoutez-la par ici.</string>
+    <string name="quelle_est_votre_sp_cialit">Quelle est votre spécialité ?</string>
+    <string name="veuillez_indiquer_ici_le_nom_de_votre_sp_cialisation">Veuillez indiquer ici le nom de votre spécialisation</string>
+    <string name="submit">Soumettre</string>
+    <string name="add_another_course">Ajouter un module</string>
+    <string name="what_is_the_name_of_the_course">Quel est le nom du module ?</string>
+    <string name="write_it_here_please">Écrivez-le ici, SVP…</string>
+    <string name="coeffiecient">Coeffiecient</string>
+    <string name="veuillez_tout_s_lectionner_si_le_cours_est_un_cours_td_tp_seul_un_cours_avec_td_seulement_ou_et_tp_ou_tout_autre_cas_sp_cifique">Veuillez tout sélectionner si le cours est un cours/TD/TP seul, un cours avec TD seulement ou/et TP, ou tout autre cas spécifique</string>
+    <string name="veuillez_tout_s_lectionner_si_la_formule">Veuillez sélectionner une formule de calcul pour ce module, exp: (Cours x 60% + TD x 40%) x 2</string>
+    <string name="pourcentage">Pourcentage (%)</string>
+    <string name="this_field_is_required">Ce champ est obligatoire</string>
+    <string name="cours_td_tp_seul_x_coefficient">Cours/TD/TP seul x coefficient</string>
+    <string name="cours_x_pourcentage_td_x_pourcentage_x_coefficient">(Cours x pourcentage + TD x pourcentage) x coefficient</string>
+    <string name="cours_x_pourcentage_tp_x_pourcentage_x_coefficient">(Cours x pourcentage + TP x pourcentage) x coefficient</string>
+    <string name="cours_x_pourcentage_td_x_pourcentage_tp_x_pourcentage_x_coefficient">(Cours x pourcentage + TD x pourcentage + TP x pourcentage) x coefficient</string>
+    <string name="veuillez_s_lectionner_au_moins_une_option_cours_td_ou_tp">Veuillez sélectionner au moins une option Cours, TD ou TP</string>
+    <string name="veuillez_s_lectionner_au_moins_une_formule">Veuillez sélectionner au moins une formule de calcule pour ce module</string>
+
+    <string name="veuillez_remplir_tous_les_champs">Veuillez remplir tous les champs</string>
+    <string name="veuillez_ajouter_un_cours">Veuillez ajouter un cours</string>
+
 </resources>

@@ -9,7 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.medanis.fnecliscalcultricedumoyennestlicensemaster.pages.CalculatingPage
+import com.medanis.fnecliscalcultricedumoyennestlicensemaster.activities.CalculatingPage
 import com.medanis.fnecliscalcultricedumoyennestlicensemaster.R
 import com.medanis.fnecliscalcultricedumoyennestlicensemaster.models.Spetialities
 

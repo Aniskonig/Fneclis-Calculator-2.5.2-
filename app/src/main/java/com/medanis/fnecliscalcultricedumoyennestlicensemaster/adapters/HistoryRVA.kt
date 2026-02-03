@@ -12,13 +12,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import com.medanis.fnecliscalcultricedumoyennestlicensemaster.pages.CalculatingPage
+import com.medanis.fnecliscalcultricedumoyennestlicensemaster.activities.CalculatingPage
 import com.medanis.fnecliscalcultricedumoyennestlicensemaster.R
 import com.medanis.fnecliscalcultricedumoyennestlicensemaster.models.Spetialities
 import com.medanis.fnecliscalcultricedumoyennestlicensemaster.others.getHistoryArray
-import com.medanis.fnecliscalcultricedumoyennestlicensemaster.others.getModulesFromSharedPreferences
 import com.medanis.fnecliscalcultricedumoyennestlicensemaster.others.saveHistoryArray
-import com.medanis.fnecliscalcultricedumoyennestlicensemaster.others.saveModulesInSharedPreferences
 
 
 class HistoryRVA(val mContext: Context, val mData: MutableList<Spetialities>) :

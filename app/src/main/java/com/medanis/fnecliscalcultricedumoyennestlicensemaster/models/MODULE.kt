@@ -74,7 +74,9 @@ class MODULE(moduleName: String, RATE: Double) {
         this.TpMARK = TpMARK
     }
 
-    fun getmodVal(): Double? {
+
+
+    fun getModVal(): Double? {
         modVal = 0.0
         if (RATE == 3.0) {
             Coeff = 3
