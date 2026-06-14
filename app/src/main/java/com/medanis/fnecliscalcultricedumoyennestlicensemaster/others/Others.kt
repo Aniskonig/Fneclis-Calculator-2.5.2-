@@ -1,12 +1,15 @@
 package com.medanis.fnecliscalcultricedumoyennestlicensemaster.others
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Handler
+import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -124,8 +127,20 @@ fun updateTheEmoji(context: Context, rate: Int, dialog: View, alertDialog: Alert
 
         }
     }
-    if (rate <= 3){
-        reportAlertDialog.show()
+    if (rate <= 3) {
+        if (context is Activity && !context.isFinishing && !context.isDestroyed) {
+            try {
+                reportAlertDialog.show()
+            } catch (e: WindowManager.BadTokenException) {
+                Log.e("Others", "Window token is no longer valid", e)
+            }
+        } else if (context !is Activity) {
+            try {
+                reportAlertDialog.show()
+            } catch (e: WindowManager.BadTokenException) {
+                Log.e("Others", "Window token is no longer valid", e)
+            }
+        }
     }
 
     dialog.findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animationView2).visibility =

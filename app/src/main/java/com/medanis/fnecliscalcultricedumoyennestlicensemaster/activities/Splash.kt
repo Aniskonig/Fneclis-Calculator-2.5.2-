@@ -121,13 +121,9 @@ class Splash : AppCompatActivity() {
 
 
     private fun isConnected(): Boolean {
-        val cnxManager : ConnectivityManager = baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val netInfo = cnxManager.activeNetworkInfo
-        if (netInfo !=null){
-            return netInfo.isConnected
-        }else{
-            return false}
-
+        val cnxManager = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
+        val netInfo = cnxManager?.activeNetworkInfo
+        return netInfo?.isConnected ?: false
     }
 
     private val ONESIGNAL_APP_ID = "e98f3acd-a714-4202-99ef-56311571f1bb"
@@ -148,9 +144,9 @@ class Splash : AppCompatActivity() {
             OneSignal.Notifications.requestPermission(true)
         }
 
-        wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as? WifiManager
         if(!isConnected()){
-            wifiManager!!.isWifiEnabled = true
+            wifiManager?.isWifiEnabled = true
         }
         //hiding title bar of this activity
         window.requestFeature(Window.FEATURE_NO_TITLE)

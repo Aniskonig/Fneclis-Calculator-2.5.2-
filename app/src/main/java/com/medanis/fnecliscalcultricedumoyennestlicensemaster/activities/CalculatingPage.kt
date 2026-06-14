@@ -14,9 +14,11 @@ import android.net.wifi.WifiManager
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
+import android.os.Looper
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
@@ -206,10 +208,14 @@ class CalculatingPage : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        super.onDestroy()
-        if (isConnected() && !goBack) {
-            wifiManager!!.isWifiEnabled = false
+        try {
+            if (isConnected() && !goBack) {
+                wifiManager?.isWifiEnabled = false
+            }
+        } catch (e: Exception) {
+            Log.e("CalculatingPage", "Error in onDestroy", e)
         }
+        super.onDestroy()
     }
 
     private var licenseMODULES: MutableList<MODULE> = ArrayList()
@@ -242,8 +248,12 @@ class CalculatingPage : AppCompatActivity() {
     }
 
     private fun showADS() {
-        if (mInterstitialAd != null) {
-            mInterstitialAd?.show(this)
+        if (mInterstitialAd != null && !isFinishing && !isDestroyed) {
+            try {
+                mInterstitialAd?.show(this)
+            } catch (e: Exception) {
+                Log.e("CalculatingPage", "Failed to show interstitial ad", e)
+            }
         } else {
             Log.d("TAG", "The interstitial ad wasn't ready yet.")
         }
@@ -251,15 +261,9 @@ class CalculatingPage : AppCompatActivity() {
 
     private var wifiManager: WifiManager? = null
     private fun isConnected(): Boolean {
-        val cnxManager: ConnectivityManager =
-            baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val netInfo = cnxManager.activeNetworkInfo
-        if (netInfo != null) {
-            return netInfo.isConnected
-        } else {
-            return false
-        }
-
+        val cnxManager = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
+        val netInfo = cnxManager?.activeNetworkInfo
+        return netInfo?.isConnected ?: false
     }
 
     private var scheduler: ScheduledExecutorService? = null
@@ -279,10 +283,10 @@ class CalculatingPage : AppCompatActivity() {
         moy = 0.0
         ttCoeff = 17
         session = 0
-        wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as? WifiManager
 
         if (!isConnected()) {
-            wifiManager!!.isWifiEnabled = true
+            wifiManager?.isWifiEnabled = true
         }
         goBack = false
         findViewById<TextView>(R.id.errorTextView).visibility = View.GONE
@@ -347,7 +351,7 @@ class CalculatingPage : AppCompatActivity() {
                 wifiManager =
                     applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
                 if (!isConnected()) {
-                    wifiManager!!.isWifiEnabled = true
+                    wifiManager?.isWifiEnabled = true
 
                 }
 
@@ -6196,15 +6200,21 @@ class CalculatingPage : AppCompatActivity() {
                     findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animation_view).playAnimation()
                     mp = MediaPlayer.create(this, R.raw.max_success)
                     mp.start()
-                    Handler().postDelayed({
-                        findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animation_view).visibility =
-                            View.GONE
-                        findViewById<RecyclerView>(R.id.rvCalPage).visibility = View.VISIBLE
-                        findViewById<RecyclerView>(R.id.rvCalPage).layoutParams = rvCAL
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        if (!isFinishing && !isDestroyed) {
+                            findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animation_view).visibility =
+                                View.GONE
+                            findViewById<RecyclerView>(R.id.rvCalPage).visibility = View.VISIBLE
+                            findViewById<RecyclerView>(R.id.rvCalPage).layoutParams = rvCAL
 //                    showADS()
-                        alertDialog.show()
-                        mydialog.findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animationView)
-                            .playAnimation()
+                            try {
+                                alertDialog?.show()
+                                mydialog.findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animationView)
+                                    .playAnimation()
+                            } catch (e: WindowManager.BadTokenException) {
+                                Log.e("CalculatingPage", "Window token is no longer valid", e)
+                            }
+                        }
 
                     }, 3800)
                 }
@@ -6215,7 +6225,13 @@ class CalculatingPage : AppCompatActivity() {
             }
 
             findViewById<Button>(R.id.btn_Help).setOnClickListener {
-                reportAlertDialog.show()
+                if (!isFinishing && !isDestroyed) {
+                    try {
+                        reportAlertDialog.show()
+                    } catch (e: WindowManager.BadTokenException) {
+                        Log.e("CalculatingPage", "Window token is no longer valid", e)
+                    }
+                }
             }
         }
     }

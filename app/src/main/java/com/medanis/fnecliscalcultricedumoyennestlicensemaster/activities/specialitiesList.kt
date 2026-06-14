@@ -64,8 +64,12 @@ class specialitiesList : AppCompatActivity() {
     }
 
     private fun showADS() {
-        if (mInterstitialAd != null) {
-            mInterstitialAd?.show(this)
+        if (mInterstitialAd != null && !isFinishing && !isDestroyed) {
+            try {
+                mInterstitialAd?.show(this)
+            } catch (e: Exception) {
+                Log.e("specialitiesList", "Failed to show interstitial ad", e)
+            }
         } else {
             Log.d("TAG", "The interstitial ad wasn't ready yet.")
         }
@@ -73,15 +77,9 @@ class specialitiesList : AppCompatActivity() {
 
     private var wifiManager: WifiManager? = null
     private fun isConnected(): Boolean {
-        val cnxManager: ConnectivityManager =
-            baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val netInfo = cnxManager.activeNetworkInfo
-        if (netInfo != null) {
-            return netInfo.isConnected
-        } else {
-            return false
-        }
-
+        val cnxManager = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
+        val netInfo = cnxManager?.activeNetworkInfo
+        return netInfo?.isConnected ?: false
     }
 
     var goBack = false
@@ -91,10 +89,14 @@ class specialitiesList : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        super.onDestroy()
-        if (isConnected() && !goBack) {
-            wifiManager!!.isWifiEnabled = false
+        try {
+            if (isConnected() && !goBack) {
+                wifiManager?.isWifiEnabled = false
+            }
+        } catch (e: Exception) {
+            Log.e("specialitiesList", "Error in onDestroy", e)
         }
+        super.onDestroy()
     }
 
 
@@ -333,6 +335,7 @@ class specialitiesList : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_specialities_list)
+        wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as? WifiManager
 //        val Home  = findViewById<ImageButton>(R.id.Home)
         val isHistory = intent.getBooleanExtra("isHistory", false)
 
@@ -411,7 +414,7 @@ class specialitiesList : AppCompatActivity() {
                 scheduler = Executors.newSingleThreadScheduledExecutor()
                 scheduler!!.scheduleAtFixedRate({
                     if (!isConnected()) {
-                        wifiManager!!.isWifiEnabled = true
+                        wifiManager?.isWifiEnabled = true
                         Log.i(
                             "TAG",
                             "//////////////////////////////// it was OFF \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"

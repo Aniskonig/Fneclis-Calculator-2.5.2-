@@ -49,20 +49,20 @@ class MainActivity : AppCompatActivity() {
     private var wifiManager: WifiManager? = null
 
     private fun isConnected(): Boolean {
-        val cnxManager : ConnectivityManager = baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val netInfo = cnxManager.activeNetworkInfo
-        if (netInfo !=null){
-            return netInfo.isConnected
-        }else{
-            return false}
-
+        val cnxManager = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
+        val netInfo = cnxManager?.activeNetworkInfo
+        return netInfo?.isConnected ?: false
     }
 
     override fun onDestroy() {
-        super.onDestroy()
-        if (isConnected()){
-            wifiManager?.isWifiEnabled = false
+        try {
+            if (isConnected()) {
+                wifiManager?.isWifiEnabled = false
+            }
+        } catch (e: Exception) {
+            Log.e("MainActivity", "Error in onDestroy", e)
         }
+        super.onDestroy()
     }
 
     var mInterstitialAd: InterstitialAd? = null
@@ -88,8 +88,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showADS() {
-        if (mInterstitialAd != null) {
-            mInterstitialAd?.show(this)
+        if (mInterstitialAd != null && !isFinishing && !isDestroyed) {
+            try {
+                mInterstitialAd?.show(this)
+            } catch (e: Exception) {
+                Log.e("MainActivity", "Failed to show interstitial ad", e)
+            }
         } else {
             Log.d("TAG", "The interstitial ad wasn't ready yet.")
         }
@@ -175,7 +179,7 @@ class MainActivity : AppCompatActivity() {
 
         prepareAd()
 
-        wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as? WifiManager
 
         val builder = AlertDialog.Builder(this)
         val inflater = layoutInflater
@@ -222,7 +226,7 @@ class MainActivity : AppCompatActivity() {
 //            }, 2000)
 //        }
         if(!isConnected()){
-            wifiManager!!.isWifiEnabled = true
+            wifiManager?.isWifiEnabled = true
         }
         val transitionsContainer = findViewById<RelativeLayout>(R.id.mainRelativeLayout)
 

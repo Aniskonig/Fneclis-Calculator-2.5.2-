@@ -192,11 +192,7 @@ class MainRecylerViewAdapter(private val mContext: Context, var mData: MutableLi
                 override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
                 }
                 override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
-                    if (charSequence.isNotEmpty()){
-                        mData[adapterPosition].setCourseMARK(charSequence.toString().toDouble())
-                    }else {
-                            mData[adapterPosition].setCourseMARK(25.0)
-                    }
+                    mData[adapterPosition].setCourseMARK(charSequence.toString().toDoubleOrNull() ?: 25.0)
                 }
                 override fun afterTextChanged(editable: Editable) {
                     if (editable.isEmpty()){
@@ -211,12 +207,7 @@ class MainRecylerViewAdapter(private val mContext: Context, var mData: MutableLi
 
                 }
                 override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
-                    if (charSequence.isNotEmpty()){
-                        mData[adapterPosition].setTdMARK(charSequence.toString().toDouble())
-
-                    }else {
-                        mData[adapterPosition].setTdMARK(25.0)
-                    }
+                    mData[adapterPosition].setTdMARK(charSequence.toString().toDoubleOrNull() ?: 25.0)
                 }
                 override fun afterTextChanged(editable: Editable) {
                     if (editable.isEmpty()){
@@ -231,11 +222,7 @@ class MainRecylerViewAdapter(private val mContext: Context, var mData: MutableLi
 
                 }
                 override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
-                    if (charSequence.isNotEmpty()){
-                    mData[adapterPosition].setTpMARK(charSequence.toString().toDouble())
-                    }else {
-                        mData[adapterPosition].setTpMARK(25.0)
-                    }
+                    mData[adapterPosition].setTpMARK(charSequence.toString().toDoubleOrNull() ?: 25.0)
                 }
 
                 override fun afterTextChanged(editable: Editable) {

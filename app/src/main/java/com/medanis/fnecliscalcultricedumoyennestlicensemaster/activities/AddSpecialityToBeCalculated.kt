@@ -9,9 +9,11 @@ import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.CheckBox
@@ -359,13 +361,14 @@ class AddSpecialityToBeCalculated : AppCompatActivity() {
 //                    myCourseDialog.findViewById<EditText>(R.id.editPerCourse).text.trim().toString()
 //                        .toInt()
 
-                    if (percentageCourseET.text.toString().trim().isEmpty()) {
+                    val courseValue = percentageCourseET.text.trim().toString().toDoubleOrNull()
+                    if (courseValue == null) {
                         percentageCourseET.error = getString(R.string.this_field_is_required)
                         percentageCourseET.requestFocus()
 
                         return@setOnClickListener
                     }
-                    entredPerCourse = percentageCourseET.text.trim().toString().toDouble()
+                    entredPerCourse = courseValue
 
 //                    licenseMODULES.add(MODULE("Cours", 3.0))
                 }
@@ -377,14 +380,15 @@ class AddSpecialityToBeCalculated : AppCompatActivity() {
 //                tDPer = myCourseDialog.findViewById<EditText>(R.id.editPerTD).text.trim().toString()
 //                    .toInt()
 
-                    if (percentageTDET.text.toString().trim().isEmpty()) {
+                    val tdValue = percentageTDET.text.trim().toString().toDoubleOrNull()
+                    if (tdValue == null) {
                         percentageTDET.error = getString(R.string.this_field_is_required)
                         percentageTDET.requestFocus()
 
                         return@setOnClickListener
                     }
 
-                    entredPerTD = percentageTDET.text.trim().toString().toDouble()
+                    entredPerTD = tdValue
                 }
 
                 if (tpCB.isChecked) {
@@ -394,14 +398,15 @@ class AddSpecialityToBeCalculated : AppCompatActivity() {
 //                tPPer = myCourseDialog.findViewById<EditText>(R.id.editPerTP).text.trim().toString()
 //                    .toInt()
 
-                    if (percentageTPET.text.toString().trim().isEmpty()) {
+                    val tpValue = percentageTPET.text.trim().toString().toDoubleOrNull()
+                    if (tpValue == null) {
                         percentageTPET.error = getString(R.string.this_field_is_required)
                         percentageTPET.requestFocus()
 
                         return@setOnClickListener
                     }
 
-                    entredPerTP = percentageTPET.text.trim().toString().toDouble()
+                    entredPerTP = tpValue
                 }
 
                 if (!courseCB.isChecked && !tdCB.isChecked && !tpCB.isChecked) {
@@ -665,15 +670,21 @@ class AddSpecialityToBeCalculated : AppCompatActivity() {
                 findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animation_view).playAnimation()
                 mp = MediaPlayer.create(this, R.raw.max_success)
                 mp.start()
-                Handler().postDelayed({
-                    findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animation_view).visibility =
-                        View.GONE
-                    findViewById<RecyclerView>(R.id.rvCalPage).visibility = View.VISIBLE
-                    findViewById<RecyclerView>(R.id.rvCalPage).layoutParams = rvCAL
+                Handler(Looper.getMainLooper()).postDelayed({
+                    if (!isFinishing && !isDestroyed) {
+                        findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animation_view).visibility =
+                            View.GONE
+                        findViewById<RecyclerView>(R.id.rvCalPage).visibility = View.VISIBLE
+                        findViewById<RecyclerView>(R.id.rvCalPage).layoutParams = rvCAL
 //                    showADS()
-                    alertDialog.show()
-                    mydialog.findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animationView)
-                        .playAnimation()
+                        try {
+                            alertDialog.show()
+                            mydialog.findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.animationView)
+                                .playAnimation()
+                        } catch (e: WindowManager.BadTokenException) {
+                            Log.e("AddSpeciality", "Window token is no longer valid", e)
+                        }
+                    }
 
                 }, 3800)
             }
