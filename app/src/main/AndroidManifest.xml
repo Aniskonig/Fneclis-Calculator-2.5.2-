@@ -37,8 +37,7 @@
 
         <activity
                 android:name=".activities.Splash"
-                android:exported="true"
-                android:screenOrientation="portrait">
+                android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,16 +46,13 @@
         </activity>
         <activity
                 android:name=".activities.MainActivity"
-                android:exported="false"
-                android:screenOrientation="portrait" />
+                android:exported="false"/>
         <activity
                 android:name=".activities.specialitiesList"
-                android:exported="false"
-                android:screenOrientation="portrait" />
+                android:exported="false"/>
         <activity
                 android:name=".activities.CalculatingPage"
-                android:exported="false"
-                android:screenOrientation="portrait" />
+                android:exported="false"/>
     </application>
 
 </manifest>
